@@ -1,1 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700;italic&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+.font-lora {
+  font-family: 'Lora', serif;
+}
+
+.app-bg {
+  background-image: url('https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.content-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.btn-glow {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #db2777);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(79,70,229,0.3);
+}
+.btn-glow:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(124,58,237,0.5);
+}
+.btn-glow:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.tab-btn {
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #475569;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  position: relative;
+}
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5, #db2777);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.tab-btn:hover {
+  color: #4f46e5;
+}
+.tab-btn:hover::after {
+  width: 40%;
+}
+.tab-active {
+  color: #4f46e5 !important;
+  font-weight: 700;
+}
+.tab-active::after {
+  width: 80% !important;
+}
+
+.inner-card-hover {
+  transition: all 0.3s ease;
+  border: 1px solid #f1f5f9;
+}
+.inner-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+  border-color: #e2e8f0;
+}
+
+.synonym-chip {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  background: white;
+  display: inline-block;
+}
+.synonym-chip:hover {
+  transform: scale(1.03);
+  border-color: #a78bfa;
+  color: #6d28d9;
+}
+.synonym-chip.revealed {
+  background: linear-gradient(135deg, #e0e7ff, #ede9fe);
+  border-color: #8b5cf6;
+  color: #4c1d95;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(139,92,246,0.15);
+  font-weight: bold;
+}
+
+.quiz-option {
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+.quiz-option:hover {
+  border-color: #8b5cf6;
+  background-color: #f5f3ff;
+}
+.quiz-option.selected {
+  border-color: #4f46e5;
+  background-color: #e0e7ff;
+}
+
+.gap-input {
+  border: none;
+  border-bottom: 2px solid #cbd5e1;
+  outline: none;
+  width: 80px;
+  margin: 0 8px;
+  text-align: center;
+  background: transparent;
+  transition: all 0.3s;
+  font-weight: 700;
+  color: #1e293b;
+}
+.gap-input:focus {
+  border-color: #8b5cf6;
+}
+.gap-input.correct {
+  border-color: #10b981;
+  background: #ecfdf5;
+  color: #047857;
+  border-radius: 4px 4px 0 0;
+}
+.gap-input.incorrect {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #b91c1c;
+  border-radius: 4px 4px 0 0;
+}
+
+.error-word {
+  padding: 2px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+  border: 1px solid transparent;
+}
+.error-word:hover {
+  background: #f1f5f9;
+  color: #4f46e5;
+  border-color: #cbd5e1;
+}
+.error-word.found-correct {
+  background: #dcfce7;
+  color: #047857;
+  font-weight: bold;
+  border-color: #86efac;
+}
+.error-word.found-wrong {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+textarea::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
