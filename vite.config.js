@@ -6,13 +6,17 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
-      // 1. Prevents fsevents (macOS only) from breaking the build
-      // 2. Prevents Node.js built-ins from being bundled for the browser
-      external: ['fsevents', 'path', 'fs', 'url', 'rollup']
+      // 1. Mark Node.js built-ins as external so they are ignored by the browser bundler
+      external: ['fs', 'path', 'stream', 'os', 'url', 'https', 'rollup'],
+      
+      // 2. Explicitly tell Rollup to only look at index.html
+      // This stops it from auto-scanning your netlify functions folder
+      input: {
+        main: './index.html'
+      }
     }
   },
-  optimizeDeps: {
-    // Tells Vite to ignore these if found in your dependency tree
-    exclude: ['fsevents', 'path', 'fs', 'url', 'rollup']
-  }
+  // Ensure the build only processes the 'src' folder
+  root: './',
+  publicDir: 'public'
 });
