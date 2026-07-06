@@ -1,17 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// Optimized configuration for deployment
 export default defineConfig({
   plugins: [react()],
-
-  server: {
-    port: 3000,
-    open: true
-  },
-
   build: {
-    rollupOptions: {
-      external: ['fsevents']
-    }
+    outDir: 'dist'
   }
 })
