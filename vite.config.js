@@ -1,10 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Optimized configuration for deployment
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    rollupOptions: {
+      // This tells Rollup to ignore fsevents entirely, 
+      // preventing the resolution error on Netlify's Linux environment.
+      external: ['fsevents']
+    }
   }
 })
