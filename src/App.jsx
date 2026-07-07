@@ -631,9 +631,13 @@ export default function App() {
     <div className="bg-slate-900 app-bg pb-20 min-h-screen">
       
       {/* Header Section */}
-      <header className="pt-12 pb-8 px-4 text-center animate-fade-in drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-lora font-bold text-white tracking-tight mb-3">Unit 1: IELTS Task 1</h1>
-        <p className="text-lg md:text-xl font-medium text-slate-100 max-w-2xl mx-auto italic">Because a picture is worth 150 words (and your sanity).</p>
+      <header className="pt-12 pb-10 px-4 text-center animate-fade-in drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-lora font-bold text-white tracking-tight mb-3">IELTS Writing Task 1 Masterclass</h1>
+        <p className="text-lg md:text-xl font-medium text-slate-100 max-w-2xl mx-auto italic mb-6">Because a picture is worth 150 words (and your sanity).</p>
+        
+        <div className="max-w-3xl mx-auto bg-slate-800/60 p-6 rounded-2xl border border-slate-600 backdrop-blur-sm shadow-xl text-slate-200 leading-relaxed text-sm md:text-base font-medium">
+          Welcome to the only platform on the internet dedicated to teaching you how to stare at a profoundly meaningless chart of 1994 cheese consumption and successfully hallucinate 150 highly academic words about it. Our AI examiner is here to brutally judge your grammar, mock your repetitive vocabulary, and ultimately transform you from a confused robot listing numbers into a sophisticated data analyst. Grab a coffee, suppress your existential dread, and let's conquer this test.
+        </div>
       </header>
 
       <div className="max-w-7xl mx-auto px-4 md:px-6">
