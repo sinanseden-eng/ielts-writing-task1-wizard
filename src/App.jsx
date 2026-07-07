@@ -186,16 +186,65 @@ const dataHub = {
     chart: { type: 'bar', data: { labels: ['Actually Working', 'Staring at Screen', 'Snacking', 'Scrolling Social Media'], datasets: [{ label: 'Hours per day (WFH)', data: [1.5, 3, 2, 4.5], backgroundColor: ['#10b981', '#64748b', '#f59e0b', '#ef4444'] }] } }
   },
   trendVocab: [
-    { word: 'Skyrocket', type: 'Upward', def: 'To rise extremely quickly or make extremely rapid progress.', example: 'Inflation skyrocketed in the last quarter.', cols: 'Prices, Inflation, Demand' },
-    { word: 'Soar', type: 'Upward', def: 'To rise very quickly to a high level.', example: 'The cost of living continued to soar throughout 2022.', cols: 'Temperatures, Costs, Profits' },
-    { word: 'Surge', type: 'Upward', def: 'A sudden and great increase.', example: 'There was a sudden surge in online shopping.', cols: 'Interest, Demand, Prices' },
-    { word: 'Plummet', type: 'Downward', def: 'To fall very quickly and suddenly from a high level.', example: 'Share prices plummeted after the executive scandal.', cols: 'Prices, Temperatures, Values' },
-    { word: 'Plunge', type: 'Downward', def: 'To go down suddenly and rapidly.', example: 'The temperature plunged below freezing over the weekend.', cols: 'Markets, Temperatures, Rates' },
-    { word: 'Dip', type: 'Downward', def: 'To go down to a lower level temporarily, often before recovering.', example: 'Sales dipped slightly in the summer before peaking in winter.', cols: 'Slightly, Briefly, Sharply' },
-    { word: 'Plateau', type: 'Stability', def: 'To reach a state of little or no change after a period of activity.', example: 'Population growth plateaued after a decade of rapid expansion.', cols: 'Sales, Growth, Population' },
-    { word: 'Stagnate', type: 'Stability', def: 'To stay the same and not grow or develop (often negative).', example: 'The economy has stagnated for several years.', cols: 'Economy, Wages, Market' },
-    { word: 'Fluctuate', type: 'Volatility', def: 'To rise and fall irregularly in number or amount.', example: 'Temperatures fluctuated wildly during the month of April.', cols: 'Wildly, Prices, Rates' },
-    { word: 'Erratic', type: 'Volatility', def: 'Moving or behaving in a way that is not regular, certain, or expected.', example: 'The chart demonstrates a highly erratic pattern of consumer spending.', cols: 'Pattern, Behavior, Market' }
+    // Upward Trends
+    { word: 'Rise', type: 'Upward', def: 'To move upwards or increase in amount.', example: 'Profits began to rise in the second quarter.', cols: 'Steadily, Sharply, Gradually', icon: '📈' },
+    { word: 'Increase', type: 'Upward', def: 'To become larger in amount or number.', example: 'There was an increase in tourism.', cols: 'Significantly, Gradually', icon: '➕' },
+    { word: 'Climb', type: 'Upward', def: 'To go up or increase, often steadily.', example: 'Interest rates climbed to 5%.', cols: 'Steadily, Slowly', icon: '🧗' },
+    { word: 'Grow', type: 'Upward', def: 'To increase in size or amount over time.', example: 'The population continues to grow rapidly.', cols: 'Rapidly, Steadily', icon: '🌱' },
+    { word: 'Go up', type: 'Upward', def: 'To become higher in level.', example: 'The cost of materials went up again.', cols: 'Slightly, Sharply', icon: '⬆️' },
+    { word: 'Soar', type: 'Upward', def: 'To rise very quickly to a high level.', example: 'The cost of living continued to soar throughout 2022.', cols: 'Temperatures, Costs, Profits', icon: '🦅' },
+    { word: 'Rocket', type: 'Upward', def: 'To rise extremely quickly or make rapid progress.', example: 'Inflation rocketed in the last quarter.', cols: 'Prices, Demand', icon: '🚀' },
+    { word: 'Jump', type: 'Upward', def: 'To increase suddenly and by a large amount.', example: 'Sales jumped by 20% last month.', cols: 'Suddenly, Significantly', icon: '🦘' },
+    { word: 'Surge', type: 'Upward', def: 'A sudden and great increase.', example: 'There was a sudden surge in online shopping.', cols: 'Interest, Demand, Prices', icon: '🌊' },
+    { word: 'Leap', type: 'Upward', def: 'To make a large and sudden increase.', example: 'Profits leaped to a record high.', cols: 'Profits, Numbers', icon: '🏃‍♂️' },
+
+    // Downward Trends
+    { word: 'Fall', type: 'Downward', def: 'To go down to a lower level or amount.', example: 'The number of accidents fell sharply.', cols: 'Sharply, Steadily', icon: '📉' },
+    { word: 'Decrease', type: 'Downward', def: 'To become less, or to make something become less.', example: 'The unemployment rate decreased.', cols: 'Significantly, Slowly', icon: '➖' },
+    { word: 'Decline', type: 'Downward', def: 'To gradually become less, worse, or lower.', example: 'Manufacturing jobs declined in the 1990s.', cols: 'Gradually, Steadily', icon: '↘️' },
+    { word: 'Drop', type: 'Downward', def: 'To fall to a lower amount or value.', example: 'Temperatures dropped overnight.', cols: 'Suddenly, Slightly', icon: '💧' },
+    { word: 'Go down', type: 'Downward', def: 'To move to a lower level or point.', example: 'The percentage went down to 15%.', cols: 'Steadily, Gradually', icon: '⏬' },
+    { word: 'Plummet', type: 'Downward', def: 'To fall very quickly and suddenly from a high level.', example: 'Share prices plummeted after the scandal.', cols: 'Prices, Values', icon: '☄️' },
+    { word: 'Plunge', type: 'Downward', def: 'To go down suddenly and rapidly.', example: 'The temperature plunged below freezing.', cols: 'Markets, Rates', icon: '🤿' },
+    { word: 'Slump', type: 'Downward', def: 'To fall heavily and suddenly.', example: 'Sales slumped during the winter months.', cols: 'Sales, Profits', icon: '😞' },
+    { word: 'Sink', type: 'Downward', def: 'To go down or drop to a lower level.', example: 'The value of the currency sank.', cols: 'Values, Rates', icon: '⚓' },
+    { word: 'Dip', type: 'Downward', def: 'To go down to a lower level temporarily, before recovering.', example: 'Sales dipped slightly in the summer.', cols: 'Slightly, Briefly', icon: '🥄' },
+
+    // Extremes
+    { word: 'Peak', type: 'Extremes', def: 'To reach the highest point or value.', example: 'Sales peaked at $2M in December.', cols: 'At, Highest', icon: '🏔️' },
+    { word: 'Reach a high', type: 'Extremes', def: 'To attain the highest level.', example: 'The stock reached a high of $50.', cols: 'Record high, All-time', icon: '🔝' },
+    { word: 'Hit a low', type: 'Extremes', def: 'To reach the absolute lowest value.', example: 'The temperature hit a low of -5°C.', cols: 'Record low, All-time', icon: '🔽' },
+    { word: 'Bottom out', type: 'Extremes', def: 'To reach the lowest point and stop falling.', example: 'The recession finally bottomed out in 2009.', cols: 'Economy, Prices', icon: '🕳️' },
+
+    // Stability
+    { word: 'Remain stable', type: 'Stability', def: 'To stay the same without changing.', example: 'The figures remained stable for three years.', cols: 'Relatively, Completely', icon: '🧱' },
+    { word: 'Stay constant', type: 'Stability', def: 'To not change in amount or level.', example: 'The proportion stayed constant at 10%.', cols: 'Figures, Rates', icon: '⚖️' },
+    { word: 'Level off', type: 'Stability', def: 'To stop rising or falling and become steady.', example: 'After a sharp rise, prices levelled off.', cols: 'Prices, Rates', icon: '📏' },
+    { word: 'Plateau', type: 'Stability', def: 'To reach a state of little or no change.', example: 'Population growth plateaued after a decade.', cols: 'Sales, Growth', icon: '⛰️' },
+    { word: 'Remain the same', type: 'Stability', def: 'To show no difference over time.', example: 'The numbers remained the same throughout.', cols: 'Exactly, Broadly', icon: '🔄' },
+    { word: 'Hold steady', type: 'Stability', def: 'To stay firm and unchanging.', example: 'Interest rates held steady this month.', cols: 'Rates, Markets', icon: '🛑' },
+
+    // Volatility
+    { word: 'Fluctuate', type: 'Volatility', def: 'To rise and fall irregularly in number or amount.', example: 'Temperatures fluctuated wildly during April.', cols: 'Wildly, Prices', icon: '〰️' },
+    { word: 'Oscillate', type: 'Volatility', def: 'To swing back and forth between two points.', example: 'The rate oscillated between 2% and 4%.', cols: 'Rates, Percentages', icon: '⏱️' },
+    { word: 'Vary', type: 'Volatility', def: 'To change or differ from something else.', example: 'The numbers varied significantly by region.', cols: 'Significantly, Widely', icon: '🔀' },
+
+    // Speed & Degree (Adjectives)
+    { word: 'Dramatic', type: 'Adjectives', def: 'Very sudden or noticeable change.', example: 'There was a dramatic increase in sales.', cols: 'Increase, Fall, Rise', icon: '🎭' },
+    { word: 'Sharp', type: 'Adjectives', def: 'A sudden and rapid change.', example: 'A sharp drop in prices occurred.', cols: 'Drop, Decline, Rise', icon: '🔪' },
+    { word: 'Significant', type: 'Adjectives', def: 'Large or important enough to be noticed.', example: 'A significant decline was seen.', cols: 'Decline, Growth', icon: '❗' },
+    { word: 'Substantial', type: 'Adjectives', def: 'Large in amount or value.', example: 'There was a substantial rise in costs.', cols: 'Rise, Increase, Drop', icon: '📈' },
+    { word: 'Steady', type: 'Adjectives', def: 'Happening in a smooth, gradual, and regular way.', example: 'A steady climb in numbers.', cols: 'Climb, Fall, Increase', icon: '🚶' },
+    { word: 'Gradual', type: 'Adjectives', def: 'Happening slowly over a period of time.', example: 'A gradual rise in temperature.', cols: 'Rise, Decrease', icon: '🐢' },
+    { word: 'Slight', type: 'Adjectives', def: 'Small in degree or amount.', example: 'There was a slight dip in the market.', cols: 'Dip, Increase, Drop', icon: '🤏' },
+
+    // Speed & Degree (Adverbs)
+    { word: 'Dramatically', type: 'Adverbs', def: 'In a very sudden or noticeable way.', example: 'Sales increased dramatically in Q4.', cols: 'Increase, Fall, Rise', icon: '💥' },
+    { word: 'Sharply', type: 'Adverbs', def: 'Quickly and suddenly.', example: 'Prices fell sharply.', cols: 'Fall, Rise, Drop', icon: '⚡' },
+    { word: 'Significantly', type: 'Adverbs', def: 'In a large or important way.', example: 'Profits grew significantly.', cols: 'Grow, Decrease', icon: '📊' },
+    { word: 'Steadily', type: 'Adverbs', def: 'Gradually and in an even and regular way.', example: 'The number of visitors rose steadily.', cols: 'Rise, Climb', icon: '⏳' },
+    { word: 'Gradually', type: 'Adverbs', def: 'Slowly over a period of time.', example: 'The population increased gradually.', cols: 'Increase, Decline', icon: '🗓️' },
+    { word: 'Slightly', type: 'Adverbs', def: 'A little.', example: 'Temperatures dropped slightly.', cols: 'Drop, Fall, Increase', icon: '📉' }
   ],
   trendQuiz: [
     { q: "If prices fall very quickly and suddenly, they have...", options: ["Plummeted", "Plateaued", "Fluctuated"], answer: "Plummeted" },
@@ -758,7 +807,7 @@ export default function App() {
 
                 {/* Vocabulary Presentation Matrix */}
                 <div className="pt-8 border-t border-gray-200">
-                   <div className="flex justify-between items-center mb-6">
+                   <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
                      <h3 className="text-2xl font-bold text-slate-800 flex items-center">
                         <BookOpen className="mr-2 text-indigo-600" /> Vocabulary Matrix Research
                      </h3>
@@ -769,7 +818,7 @@ export default function App() {
                    </div>
                    
                    {vocabViewMode === 'grid' ? (
-                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
+                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-12">
                        {dataHub.trendVocab.map((vocab, idx) => {
                          const isFlipped = flippedCards[idx];
                          return (
@@ -800,21 +849,23 @@ export default function App() {
                      <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 mb-12 shadow-inner">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
                           {/* Semantic Web Groupings */}
-                          {['Upward', 'Downward', 'Extremes', 'Stability', 'Volatility'].map(type => {
+                          {['Upward', 'Downward', 'Extremes', 'Stability', 'Volatility', 'Adjectives', 'Adverbs'].map(type => {
                             const words = dataHub.trendVocab.filter(v => v.type === type);
-                            if (words.length === 0) return null; // Safety check
+                            if (words.length === 0) return null;
                             
                             let colors = '';
                             if (type === 'Upward') colors = 'border-emerald-500 text-emerald-700 bg-emerald-50';
                             else if (type === 'Downward') colors = 'border-rose-500 text-rose-700 bg-rose-50';
                             else if (type === 'Extremes') colors = 'border-purple-500 text-purple-700 bg-purple-50';
                             else if (type === 'Stability') colors = 'border-slate-400 text-slate-700 bg-slate-100';
-                            else colors = 'border-amber-500 text-amber-700 bg-amber-50';
+                            else if (type === 'Volatility') colors = 'border-amber-500 text-amber-700 bg-amber-50';
+                            else if (type === 'Adjectives') colors = 'border-sky-500 text-sky-700 bg-sky-50';
+                            else colors = 'border-fuchsia-500 text-fuchsia-700 bg-fuchsia-50';
                             
                             return (
                               <div key={type} className={`bg-white p-6 rounded-xl border-2 ${colors.split(' ')[0]} shadow-sm relative`}>
                                 <div className={`absolute -top-4 left-1/2 transform -translate-x-1/2 border-2 px-6 py-1.5 rounded-full font-black uppercase tracking-widest text-sm ${colors} bg-white whitespace-nowrap`}>
-                                  {type} TRENDS
+                                  {type}
                                 </div>
                                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
                                   {words.map((w, i) => (
