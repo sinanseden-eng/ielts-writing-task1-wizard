@@ -93,7 +93,7 @@ const MapVisual = ({ title1, title2, features1, features2 }) => {
   const renderMap = (title, features) => (
     <div className="bg-white border border-slate-200 rounded-xl p-3 md:p-6 w-full shadow-sm">
       <h4 className="text-center font-bold text-slate-800 mb-3 md:mb-6">{title}</h4>
-      <div className="relative w-full h-[280px] sm:h-[320px] md:h-[400px] bg-[#dcfce7] border-2 border-[#86efac] rounded-lg overflow-hidden flex flex-col shadow-inner">
+      <div className="relative w-full h-[300px] sm:h-[350px] md:h-[450px] bg-[#dcfce7] border-2 border-[#86efac] rounded-lg overflow-hidden flex flex-col shadow-inner">
         {/* River layer - Centered Horizontally */}
         <div className="absolute top-1/2 left-0 w-full h-12 md:h-16 bg-blue-200 border-y-2 border-blue-300 transform -translate-y-1/2 opacity-70"></div>
         {/* Road layer - Centered Vertically */}
@@ -101,9 +101,9 @@ const MapVisual = ({ title1, title2, features1, features2 }) => {
         
         {/* Plotted Features */}
         {features.map((f, i) => (
-          <div key={i} className={`absolute flex flex-col items-center justify-center p-1.5 sm:p-2 md:p-3 rounded-lg shadow-md border-2 bg-white z-10 w-[72px] sm:w-[84px] md:w-[96px] ${f.pos}`}>
-            <span className="text-xl sm:text-2xl md:text-3xl mb-0.5 md:mb-1">{f.icon}</span>
-            <span className="text-[9px] sm:text-[10px] md:text-xs font-bold mt-0.5 text-slate-800 text-center leading-tight break-words">{f.label}</span>
+          <div key={i} className={`absolute flex flex-col items-center justify-center p-1 sm:p-2 rounded-lg shadow-md border-2 bg-white z-10 w-[64px] sm:w-[80px] md:w-[92px] ${f.pos}`}>
+            <span className="text-xl sm:text-2xl md:text-3xl mb-0.5">{f.icon}</span>
+            <span className="text-[8px] sm:text-[10px] md:text-xs font-bold mt-0.5 text-slate-800 text-center leading-tight break-words">{f.label}</span>
           </div>
         ))}
       </div>
@@ -111,10 +111,10 @@ const MapVisual = ({ title1, title2, features1, features2 }) => {
   );
 
   return (
-    <div className="flex flex-col xl:flex-row gap-6 md:gap-8 w-full items-center justify-center bg-slate-50 p-4 md:p-8 rounded-xl border border-slate-200">
+    <div className="flex flex-col gap-6 md:gap-8 w-full items-center justify-center bg-slate-50 p-4 md:p-8 rounded-xl border border-slate-200">
       {renderMap(title1, features1)}
-      <div className="hidden xl:flex flex-col items-center justify-center px-2">
-        <ArrowRight className="w-10 h-10 text-slate-400 flex-shrink-0" />
+      <div className="flex flex-col items-center justify-center px-2">
+        <ArrowRight className="w-10 h-10 text-slate-400 flex-shrink-0 rotate-90" />
       </div>
       {renderMap(title2, features2)}
     </div>
