@@ -4,7 +4,7 @@ import {
   AlertCircle, Activity, PieChart, Map as MapIcon, 
   GitMerge, Lightbulb, FileSpreadsheet, ArrowRight,
   ChevronLeft, Zap, Search, Edit3, MessageSquare,
-  TrendingUp
+  TrendingUp, BookOpen, Repeat
 } from 'lucide-react';
 
 // ============================================================================
@@ -52,8 +52,8 @@ const ChartCanvas = ({ type, data, options, height = '220px' }) => {
 };
 
 const TableVisual = ({ data }) => (
-  <div className="overflow-x-auto w-full bg-white rounded-lg border border-gray-200 shadow-sm">
-    <table className="w-full text-sm text-left text-gray-700 border-collapse">
+  <div className="overflow-x-auto w-full bg-white rounded-lg border border-slate-200 shadow-sm">
+    <table className="w-full text-sm text-left text-slate-700 border-collapse">
       <thead className="bg-indigo-50 text-indigo-900 font-bold border-b-2 border-indigo-200">
         <tr>
           {data.headers.map((h, i) => <th key={i} className="px-4 py-3 whitespace-nowrap">{h}</th>)}
@@ -61,9 +61,9 @@ const TableVisual = ({ data }) => (
       </thead>
       <tbody>
         {data.rows.map((row, i) => (
-          <tr key={i} className="border-b border-gray-100 hover:bg-indigo-50/50 transition-colors">
+          <tr key={i} className="border-b border-slate-100 hover:bg-indigo-50/50 transition-colors">
             {row.map((cell, j) => (
-              <td key={j} className={`px-4 py-3 ${j === 0 ? 'font-semibold text-gray-800' : ''}`}>{cell}</td>
+              <td key={j} className={`px-4 py-3 ${j === 0 ? 'font-semibold text-slate-800' : ''}`}>{cell}</td>
             ))}
           </tr>
         ))}
@@ -93,18 +93,17 @@ const MapVisual = ({ title1, title2, features1, features2 }) => {
   const renderMap = (title, features) => (
     <div className="bg-white border border-slate-200 rounded-xl p-4 w-full shadow-sm">
       <h4 className="text-center font-bold text-slate-800 mb-4">{title}</h4>
-      <div className="relative w-full h-56 bg-[#dcfce7] border-2 border-[#86efac] rounded-lg overflow-hidden flex flex-col shadow-inner">
-        {/* Decorative road layer */}
-        <div className="absolute top-1/2 left-0 w-full h-10 bg-slate-400 transform -translate-y-1/2 flex items-center justify-evenly border-y-2 border-slate-500">
-          <div className="w-full border-t-4 border-dashed border-white"></div>
-        </div>
-        <div className="absolute top-0 left-1/3 w-8 h-full bg-slate-300 border-x-2 border-slate-400"></div>
+      <div className="relative w-full h-64 bg-[#dcfce7] border-2 border-[#86efac] rounded-lg overflow-hidden flex flex-col shadow-inner">
+        {/* River layer */}
+        <div className="absolute top-1/3 left-0 w-full h-12 bg-blue-200 border-y-2 border-blue-300 transform -translate-y-1/2 opacity-70"></div>
+        {/* Road layer */}
+        <div className="absolute top-0 left-1/3 w-10 h-full bg-slate-300 border-x-2 border-slate-400 opacity-60"></div>
         
         {/* Plotted Features */}
         {features.map((f, i) => (
-          <div key={i} className={`absolute flex flex-col items-center justify-center p-2 rounded-lg shadow-md border-2 bg-white ${f.pos}`}>
+          <div key={i} className={`absolute flex flex-col items-center justify-center p-2 rounded-lg shadow-md border-2 bg-white z-10 ${f.pos}`}>
             <span className="text-2xl">{f.icon}</span>
-            <span className="text-[10px] font-bold mt-1 text-slate-800 text-center leading-none">{f.label}</span>
+            <span className="text-[10px] font-bold mt-1 text-slate-800 text-center leading-none whitespace-nowrap">{f.label}</span>
           </div>
         ))}
       </div>
@@ -136,54 +135,131 @@ const dataHub = {
     { 
       type: 'Line Graph', icon: <Activity className="w-6 h-6 text-blue-500"/>, 
       advice: 'Group lines that follow a similar pattern. Highlight the peaks and troughs. Don\'t list every year unless you want the examiner to fall asleep.',
+      purpose: 'Used by economists and scientists to track continuous changes over time, revealing long-term trajectories, volatility, and sudden shifts.',
       title: 'Declining Will to Live (Mon vs Fri)',
       visual: { type: 'line', data: { labels: ['Mon','Tue','Wed','Thu','Fri'], datasets: [{ label: 'Motivation', data: [90, 60, 40, 20, 5], borderColor: '#ef4444', tension: 0.3 }, { label: 'Coffee Intake', data: [2, 4, 6, 8, 10], borderColor: '#10b981', tension: 0.3 }] } }
     },
     { 
       type: 'Bar Chart', icon: <BarChart2 className="w-6 h-6 text-indigo-500"/>, 
       advice: 'Compare the heights. Identify the highest and lowest categories. Do not describe them from left to right like a robot scanning a barcode.',
+      purpose: 'Frequently used in business and demographic studies to easily compare different discrete groups or categories side-by-side at a specific moment.',
       title: 'Top Excuses for Missing Deadlines',
       visual: { type: 'bar', data: { labels: ['Wi-Fi Died', 'Dog ate it', 'Existential Dread', 'Forgot'], datasets: [{ label: 'Frequency', data: [85, 5, 95, 40], backgroundColor: ['#4f46e5', '#8b5cf6', '#ef4444', '#cbd5e1'] }] } }
     },
     { 
       type: 'Pie Chart', icon: <PieChart className="w-6 h-6 text-rose-500"/>, 
       advice: 'Focus on proportions. Compare the largest and smallest slices. If there are multiple pies, compare the same slice across pies, not pie by pie.',
+      purpose: 'Ideal for illustrating budget allocations, market share, and survey results, showing exactly how a "whole" is divided into proportional segments.',
       title: 'What I Actually Do on the Internet',
       visual: { type: 'doughnut', data: { labels: ['Cat Videos', 'Arguing', 'Working'], datasets: [{ data: [75, 24, 1], backgroundColor: ['#f59e0b', '#f43f5e', '#10b981'] }] } }
     },
     { 
       type: 'Table', icon: <FileSpreadsheet className="w-6 h-6 text-emerald-500"/>, 
       advice: 'Scan for extremes. Pick out the most striking comparisons. Treat it like a spreadsheet of despair—only report the cells that actually matter.',
+      purpose: 'The absolute standard for rigorous academic and financial reporting, allowing precise cross-referencing of incredibly dense, multi-variable data.',
       title: 'Survival Rate of House Plants',
       visual: { type: 'table', data: { headers: ['Plant', 'Days Alive', 'Cause of Death'], rows: [['Cactus', '400', 'Overwatered'], ['Fern', '12', 'Neglect'], ['Orchid', '2', 'Looked at it wrong']] } }
     },
     { 
       type: 'Process Diagram', icon: <GitMerge className="w-6 h-6 text-amber-500"/>, 
       advice: 'No trends here! Describe steps in order using the passive voice ("is heated", "is filtered"). Use time connectors (First, subsequently, finally).',
+      purpose: 'Found in operational manuals and scientific reports to clearly explain the sequential stages of a manufacturing system or natural life cycle.',
       title: 'Brick Manufacturing Process',
       visual: { type: 'process', data: { title: 'How bricks are produced for the building industry', steps: [{ label: 'Digging Clay', icon: '🚜' }, { label: 'Metal Grid', icon: '🎛️' }, { label: 'Add Water', icon: '💧' }, { label: 'Wire Cutter', icon: '✂️' }, { label: 'Oven (48h)', icon: '♨️' }, { label: 'Kiln', icon: '🔥' }, { label: 'Delivery', icon: '🚚' }] } }
     },
     { 
       type: 'Map / Plan', icon: <MapIcon className="w-6 h-6 text-purple-500"/>, 
       advice: 'Look at the "Before" and "After". Describe what was demolished, built, or expanded. Use directions and prepositions (North, opposite, adjacent to).',
+      purpose: 'Crucial for urban planners and historians to illustrate geographical evolution, infrastructural redevelopment, and shifts in spatial relationships.',
       title: 'Town Redevelopment',
       visual: { type: 'map', data: { 
         title1: 'Village in 2000', 
-        features1: [{ label: 'Forest', icon: '🌲', pos: 'top-2 right-2 border-emerald-400' }, { label: 'Farm', icon: '🐄', pos: 'bottom-4 left-4 border-amber-400' }, { label: 'Post Office', icon: '✉️', pos: 'top-4 left-4 border-slate-400' }], 
+        features1: [{ label: 'Forest', icon: '🌲', pos: 'top-2 right-2 border-emerald-400' }, { label: 'Farm', icon: '🐄', pos: 'bottom-2 left-2 border-amber-400' }, { label: 'Post Office', icon: '✉️', pos: 'top-2 left-2 border-slate-400' }], 
         title2: 'Village in 2024', 
-        features2: [{ label: 'Golf Course', icon: '⛳', pos: 'top-2 right-2 border-emerald-500' }, { label: 'Apartments', icon: '🏢', pos: 'bottom-4 left-4 border-rose-400' }, { label: 'Shopping Mall', icon: '🏬', pos: 'top-4 left-4 border-indigo-400' }] 
+        features2: [{ label: 'Golf Course', icon: '⛳', pos: 'top-2 right-2 border-emerald-500' }, { label: 'Apartments', icon: '🏢', pos: 'bottom-2 left-2 border-rose-400' }, { label: 'Shopping Mall', icon: '🏬', pos: 'top-2 left-2 border-indigo-400' }] 
       } }
     }
   ],
   structureGuide: {
-    chart: {
-      type: 'bar',
-      data: {
-        labels: ['Actually Working', 'Staring at Screen', 'Snacking', 'Scrolling Social Media'],
-        datasets: [{ label: 'Hours per day (WFH)', data: [1.5, 3, 2, 4.5], backgroundColor: ['#10b981', '#64748b', '#f59e0b', '#ef4444'] }]
-      }
-    }
+    chart: { type: 'bar', data: { labels: ['Actually Working', 'Staring at Screen', 'Snacking', 'Scrolling Social Media'], datasets: [{ label: 'Hours per day (WFH)', data: [1.5, 3, 2, 4.5], backgroundColor: ['#10b981', '#64748b', '#f59e0b', '#ef4444'] }] } }
   },
+  trendVocab: [
+    { word: 'Skyrocket', type: 'Upward', def: 'To rise extremely quickly or make extremely rapid progress.', example: 'Inflation skyrocketed in the last quarter.', cols: 'Prices, Inflation, Demand' },
+    { word: 'Soar', type: 'Upward', def: 'To rise very quickly to a high level.', example: 'The cost of living continued to soar throughout 2022.', cols: 'Temperatures, Costs, Profits' },
+    { word: 'Surge', type: 'Upward', def: 'A sudden and great increase.', example: 'There was a sudden surge in online shopping.', cols: 'Interest, Demand, Prices' },
+    { word: 'Plummet', type: 'Downward', def: 'To fall very quickly and suddenly from a high level.', example: 'Share prices plummeted after the executive scandal.', cols: 'Prices, Temperatures, Values' },
+    { word: 'Plunge', type: 'Downward', def: 'To go down suddenly and rapidly.', example: 'The temperature plunged below freezing over the weekend.', cols: 'Markets, Temperatures, Rates' },
+    { word: 'Dip', type: 'Downward', def: 'To go down to a lower level temporarily, often before recovering.', example: 'Sales dipped slightly in the summer before peaking in winter.', cols: 'Slightly, Briefly, Sharply' },
+    { word: 'Plateau', type: 'Stability', def: 'To reach a state of little or no change after a period of activity.', example: 'Population growth plateaued after a decade of rapid expansion.', cols: 'Sales, Growth, Population' },
+    { word: 'Stagnate', type: 'Stability', def: 'To stay the same and not grow or develop (often negative).', example: 'The economy has stagnated for several years.', cols: 'Economy, Wages, Market' },
+    { word: 'Fluctuate', type: 'Volatility', def: 'To rise and fall irregularly in number or amount.', example: 'Temperatures fluctuated wildly during the month of April.', cols: 'Wildly, Prices, Rates' },
+    { word: 'Erratic', type: 'Volatility', def: 'Moving or behaving in a way that is not regular, certain, or expected.', example: 'The chart demonstrates a highly erratic pattern of consumer spending.', cols: 'Pattern, Behavior, Market' }
+  ],
+  trendQuiz: [
+    { q: "If prices fall very quickly and suddenly, they have...", options: ["Plummeted", "Plateaued", "Fluctuated"], answer: "Plummeted" },
+    { q: "If a line goes up and down unpredictably, it is...", options: ["Soaring", "Erratic", "Stagnating"], answer: "Erratic" },
+    { q: "If numbers stop growing and stay exactly the same, they have...", options: ["Surged", "Dipped", "Flatlined"], answer: "Flatlined" },
+    { q: "To rise very rapidly and dramatically is to...", options: ["Skyrocket", "Plunge", "Level off"], answer: "Skyrocket" },
+    { q: "A small, temporary fall before a recovery is called a...", options: ["Collapse", "Dip", "Peak"], answer: "Dip" },
+    { q: "If a company's profits go up smoothly over 5 years, they increased...", options: ["Wildly", "Steadily", "Erratically"], answer: "Steadily" },
+    { q: "If a chart shows a sudden, sharp, and massive increase, it experienced a...", options: ["Surge", "Plateau", "Trough"], answer: "Surge" },
+    { q: "When data reaches its absolute lowest point, it has...", options: ["Peaked", "Bottomed out", "Soared"], answer: "Bottomed out" },
+    { q: "When an economy fails to grow for a long time, it...", options: ["Stagnates", "Fluctuates", "Skyrockets"], answer: "Stagnates" },
+    { q: "To stay at the same level for a long time after a period of growth is to...", options: ["Plummet", "Plateau", "Dip"], answer: "Plateau" },
+    { q: "When a line reaches its absolute highest point, it has...", options: ["Hit a peak", "Bottomed out", "Levelled off"], answer: "Hit a peak" },
+    { q: "If sales fall, but then return to their original high position, they...", options: ["Collapsed", "Stagnated", "Bounced back"], answer: "Bounced back" }
+  ],
+  languageOfChange: [
+    { title: 'The Skyrocket', icon: '🚀', words: 'surged, soared, shot up, skyrocketed', example: '"The number of unread emails skyrocketed after the weekend."', colors: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-800' }, chartType: 'line', chartData: { labels: ['Fri','Mon'], datasets: [{ data: [5, 450], borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16,185,129,0.1)', tension: 0.2 }] } },
+    { title: 'The Abyss', icon: '🕳️', words: 'plummeted, plunged, collapsed, sank', example: '"My bank balance plunged dramatically after payday."', colors: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-800' }, chartType: 'line', chartData: { labels: ['Payday','Day 2'], datasets: [{ data: [2000, 12], borderColor: '#f43f5e', fill: true, backgroundColor: 'rgba(244,63,94,0.1)', tension: 0.2 }] } },
+    { title: 'The Plateau of Boredom', icon: '➡️', words: 'remained steady, flatlined, stagnated', example: '"My career progression flatlined at middle management."', colors: { bg: 'bg-slate-100', border: 'border-slate-300', text: 'text-slate-800' }, chartType: 'line', chartData: { labels: ['2015','2017', '2019', '2021', '2023'], datasets: [{ data: [50, 50, 50, 50, 50], borderColor: '#64748b', fill: true, backgroundColor: 'rgba(100,116,139,0.1)', tension: 0 }] } },
+    { title: 'The Rollercoaster', icon: '🎢', words: 'fluctuated wildly, was highly erratic', example: '"My stability fluctuated wildly during the exam."', colors: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-800' }, chartType: 'line', chartData: { labels: ['Q1','Q2','Q3','Q4'], datasets: [{ data: [90, 10, 85, 5], borderColor: '#f59e0b', fill: true, backgroundColor: 'rgba(245,158,11,0.1)', tension: 0.3 }] } }
+  ],
+  trendSentences: [
+    { text: "Coffee sales soared dramatically from 10 to 90 cups.", data: [10, 20, 40, 90] },
+    { text: "Motivation plummeted to an all-time low of 5% by Friday.", data: [80, 50, 20, 5] },
+    { text: "Meetings remained agonizingly steady at 4 per day.", data: [4, 4.1, 3.9, 4] },
+    { text: "Productivity fluctuated wildly, oscillating between 10% and 90%.", data: [20, 90, 10, 80] },
+    { text: "The number of unread emails climbed steadily to 70.", data: [10, 30, 50, 70] },
+    { text: "Patience dipped slightly on Tuesday before recovering.", data: [50, 30, 45, 60] }
+  ],
+  prepositions: [
+    { text: "Patience decreased _ 100% _ Monday _ Friday.", answers: ["by", "from", "to"] },
+    { text: "Procrastination peaked _ 11 PM.", answers: ["at"] },
+    { text: "The amount of pointless meetings stood _ 5 per day.", answers: ["at"] },
+    { text: "Motivation fell _ a high _ 90 _ a low _ zero.", answers: ["from", "of", "to", "of"] },
+    { text: "My anxiety fluctuated _ panic _ extreme panic.", answers: ["between", "and"] },
+    { text: "Unread emails started _ 50 on Monday.", answers: ["at"] },
+    { text: "There was a dramatic increase _ the consumption of snacks.", answers: ["in"] },
+    { text: "Existential dread experienced a rise _ 40%.", answers: ["of"] },
+    { text: "Profits surged _ $1M _ $5M.", answers: ["from", "to"] },
+    { text: "There was a drop _ demand _ the new product.", answers: ["in", "for"] },
+    { text: "The population levelled off _ 2 million.", answers: ["at"] },
+    { text: "Prices dropped _ 15% during the sale.", answers: ["by"] },
+    { text: "Sales bottomed out _ just 5 units.", answers: ["at"] },
+    { text: "There was a peak _ 500 visitors _ Sunday.", answers: ["of", "on"] },
+    { text: "The figures oscillated _ 10% _ 20%.", answers: ["between", "and"] }
+  ],
+  errors: [
+    { sentence: "The number of useless meetings have increased.", errorWord: "have", correction: "has", context: "Subject-Verb Agreement" },
+    { sentence: "There was a dramatically drop in my patience.", errorWord: "dramatically", correction: "dramatic", context: "Word Form (Adj vs Adv)" },
+    { sentence: "Avocados increased from 10 to 100.", errorWord: "Avocados", correction: "Consumption of avocados", context: "Logical Subject" },
+    { sentence: "The amount of followers on my Instagram is sad.", errorWord: "amount", correction: "number", context: "Countable vs Uncountable" },
+    { sentence: "My grades were downwarded rapidly in 2023.", errorWord: "downwarded", correction: "decreased", context: "Invented Word" },
+    { sentence: "There was a steady fail in my attempts to diet.", errorWord: "fail", correction: "failure", context: "Word Form (Noun vs Verb)" },
+    { sentence: "Less people voted in the election in 2020.", errorWord: "Less", correction: "Fewer", context: "Countable vs Uncountable" },
+    { sentence: "It reached at a peak of 50%.", errorWord: "at", correction: "(remove word)", context: "Extra Preposition" },
+    { sentence: "The chart is showing the demographics.", errorWord: "showing", correction: "shows", context: "Wrong Tense (Use Present Simple)" },
+    { sentence: "The sales bounced backwards to their original level.", errorWord: "backwards", correction: "back", context: "Wrong Phrasal Verb" },
+    { sentence: "The population fluctuated between 10 to 20 million.", errorWord: "to", correction: "and", context: "Collocation (Between... And)" },
+    { sentence: "From 1990 and 2000, there was a steady rise.", errorWord: "and", correction: "to", context: "Collocation (From... To)" },
+    { sentence: "The figure accounted to 20% of the total.", errorWord: "to", correction: "for", context: "Wrong Preposition" },
+    { sentence: "There was a significantly rise in prices.", errorWord: "significantly", correction: "significant", context: "Word Form (Adj vs Adv)" },
+    { sentence: "The graph compares how much percentages changed.", errorWord: "much", correction: "many", context: "Countable vs Uncountable" },
+    { sentence: "The number of cars were incredibly high.", errorWord: "were", correction: "was", context: "Subject-Verb Agreement" },
+    { sentence: "It peaked to 50% in the summer.", errorWord: "to", correction: "at", context: "Wrong Preposition" },
+    { sentence: "There was an upwardly trend in temperature.", errorWord: "upwardly", correction: "upward", context: "Invented Word Form" }
+  ],
   paraphrasing: [
     { context: "Internet Usage (2010-2020)", original: "The graph shows the daily hours millennials spent doomscrolling in the UK and US from 2010 to 2020.", synonyms: ["The line chart brutalises our attention spans by illustrating daily internet usage in the UK and USA over a decade.", "The visual highlights the tragic amount of hours wasted on social feeds by Millennials between 2010 and 2020."], chartType: 'line', chartData: { labels: ['2010','2020'], datasets: [{ label: 'UK', data: [2,7], borderColor: '#4f46e5' }, { label: 'US', data: [3,8], borderColor: '#ef4444' }] } },
     { context: "Coffee Consumption (2022)", original: "The bar chart compares the tons of overpriced artisanal coffee consumed in London, Paris, and Rome in 2022.", synonyms: ["The bar chart exposes the alarming intake of expensive caffeine across three major European capitals during 2022.", "The diagram illustrates the volume of premium coffee purchased by residents of London, Paris, and Rome in 2022."], chartType: 'bar', chartData: { labels: ['London','Paris', 'Rome'], datasets: [{ label: 'Tons', data: [500,450, 300], backgroundColor: ['#ef4444','#10b981', '#f59e0b'] }] } },
@@ -221,45 +297,6 @@ const dataHub = {
     { id: 4, text: "The chart below shows the total number of minutes (in billions) of telephone calls in the UK, divided into three categories (local, national/international, and mobile), from 1995 to 2002." },
     { id: 5, text: "The table below gives information on consumer spending on three different items (food, clothing, and leisure) in five different European countries in 2002." }
   ],
-  languageOfChange: [
-    { title: 'The Skyrocket', icon: '🚀', words: 'surged, soared, shot up, skyrocketed', example: '"The number of unread emails skyrocketed after the weekend."', colors: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-800' }, chartType: 'line', chartData: { labels: ['Fri','Mon'], datasets: [{ data: [5, 450], borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16,185,129,0.1)', tension: 0.2 }] } },
-    { title: 'The Abyss', icon: '🕳️', words: 'plummeted, plunged, collapsed, sank', example: '"My bank balance plunged dramatically after payday."', colors: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-800' }, chartType: 'line', chartData: { labels: ['Payday','Day 2'], datasets: [{ data: [2000, 12], borderColor: '#f43f5e', fill: true, backgroundColor: 'rgba(244,63,94,0.1)', tension: 0.2 }] } },
-    { title: 'The Plateau of Boredom', icon: '➡️', words: 'remained steady, flatlined, stagnated', example: '"My career progression flatlined at middle management."', colors: { bg: 'bg-slate-100', border: 'border-slate-300', text: 'text-slate-800' }, chartType: 'line', chartData: { labels: ['2015','2017', '2019', '2021', '2023'], datasets: [{ data: [50, 50, 50, 50, 50], borderColor: '#64748b', fill: true, backgroundColor: 'rgba(100,116,139,0.1)', tension: 0 }] } },
-    { title: 'The Rollercoaster', icon: '🎢', words: 'fluctuated wildly, was highly erratic', example: '"My stability fluctuated wildly during the exam."', colors: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-800' }, chartType: 'line', chartData: { labels: ['Q1','Q2','Q3','Q4'], datasets: [{ data: [90, 10, 85, 5], borderColor: '#f59e0b', fill: true, backgroundColor: 'rgba(245,158,11,0.1)', tension: 0.3 }] } }
-  ],
-  trendQuiz: [
-    { q: "If prices fall very quickly and suddenly, they have...", options: ["Plummeted", "Plateaued", "Fluctuated"], answer: "Plummeted" },
-    { q: "If a line goes up and down unpredictably, it is...", options: ["Soaring", "Erratic", "Stagnating"], answer: "Erratic" },
-    { q: "If numbers stop growing and stay exactly the same, they have...", options: ["Surged", "Dipped", "Flatlined"], answer: "Flatlined" },
-    { q: "To rise very rapidly and dramatically is to...", options: ["Skyrocket", "Plunge", "Level off"], answer: "Skyrocket" },
-    { q: "A small, temporary fall before a recovery is called a...", options: ["Collapse", "Dip", "Peak"], answer: "Dip" }
-  ],
-  trendSentences: [
-    { text: "Coffee sales soared dramatically from 10 to 90 cups.", data: [10, 20, 40, 90] },
-    { text: "Motivation plummeted to an all-time low of 5% by Friday.", data: [80, 50, 20, 5] },
-    { text: "Meetings remained agonizingly steady at 4 per day.", data: [4, 4.1, 3.9, 4] },
-    { text: "Productivity fluctuated wildly, oscillating between 10% and 90%.", data: [20, 90, 10, 80] },
-    { text: "The number of unread emails climbed steadily to 70.", data: [10, 30, 50, 70] },
-    { text: "Patience dipped slightly on Tuesday before recovering.", data: [50, 30, 45, 60] }
-  ],
-  prepositions: [
-    { text: "Patience decreased _ 100% _ Monday _ Friday.", answers: ["by", "from", "to"] },
-    { text: "Procrastination peaked _ 11 PM.", answers: ["at"] },
-    { text: "The amount of pointless meetings stood _ 5 per day.", answers: ["at"] },
-    { text: "Motivation fell _ a high _ 90 _ a low _ zero.", answers: ["from", "of", "to", "of"] },
-    { text: "My anxiety fluctuated _ panic _ extreme panic.", answers: ["between", "and"] },
-    { text: "Unread emails started _ 50 on Monday.", answers: ["at"] },
-    { text: "There was a dramatic increase _ the consumption of snacks.", answers: ["in"] },
-    { text: "Existential dread experienced a rise _ 40%.", answers: ["of"] }
-  ],
-  errors: [
-    { sentence: "The number of useless meetings have increased.", errorWord: "have", correction: "has", context: "Subject-Verb Agreement" },
-    { sentence: "There was a dramatically drop in my patience.", errorWord: "dramatically", correction: "dramatic", context: "Word Form (Adj vs Adv)" },
-    { sentence: "Avocados increased from 10 to 100.", errorWord: "Avocados", correction: "Consumption of avocados", context: "Logical Subject" },
-    { sentence: "The amount of followers on my Instagram is sad.", errorWord: "amount", correction: "number", context: "Countable vs Uncountable" },
-    { sentence: "My grades were downwarded rapidly in 2023.", errorWord: "downwarded", correction: "decreased", context: "Invented Word" },
-    { sentence: "There was a steady fail in my attempts to diet.", errorWord: "fail", correction: "failure", context: "Word Form (Noun vs Verb)" }
-  ],
   deepDiveTopics: [
     { 
       id: 'line', title: 'Mastering Line Graphs', subtitle: 'Tracking the rollercoaster of data over time.', 
@@ -294,8 +331,25 @@ const dataHub = {
     { 
       id: 'map', title: 'Mapping the Changes', subtitle: 'North, South, Demolished, Constructed.', 
       content: 'Maps are all about prepositions of place and vocabulary of change. Never just list what is there. Focus on what was *demolished*, *constructed*, *replaced*, or *expanded*. Use compass directions (to the north of, south-west of) or relative positioning (adjacent to, opposite).', 
-      guidingQuestion: "Compare the two village maps above. Describe the redevelopment of the 'Forest' area using appropriate verbs of transformation and prepositions of place.",
-      visual: { type: 'map', data: { title1: 'Village 2000', features1: [{ label: 'Forest', icon: '🌲', pos: 'top-2 right-2 border-emerald-400' }], title2: 'Village 2024', features2: [{ label: 'Golf Course', icon: '⛳', pos: 'top-2 right-2 border-emerald-500' }] } } 
+      guidingQuestion: "Compare the two complex maps above. Describe the redevelopment of the 'Forest' and 'Old Farm' areas using appropriate verbs of transformation and prepositions of place.",
+      visual: { type: 'map', data: { 
+        title1: 'Town 1990', 
+        features1: [
+          { label: 'Forest', icon: '🌲', pos: 'top-2 right-2 border-emerald-400' }, 
+          { label: 'Old Farm', icon: '🐄', pos: 'bottom-2 left-2 border-amber-400' }, 
+          { label: 'Post Office', icon: '✉️', pos: 'top-2 left-2 border-slate-400' },
+          { label: 'Wooden Bridge', icon: '🌉', pos: 'top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-amber-800' },
+          { label: 'Dirt Road', icon: '🛤️', pos: 'bottom-2 right-2 border-amber-700' }
+        ], 
+        title2: 'Town 2024', 
+        features2: [
+          { label: 'University', icon: '🎓', pos: 'top-2 right-2 border-indigo-500' }, 
+          { label: 'Luxury Apts', icon: '🏢', pos: 'bottom-2 left-2 border-rose-400' }, 
+          { label: 'Shopping Mall', icon: '🏬', pos: 'top-2 left-2 border-indigo-400' },
+          { label: 'Concrete Bridge', icon: '🌉', pos: 'top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-slate-500' },
+          { label: 'Dual Carriageway', icon: '🛣️', pos: 'bottom-2 right-2 border-slate-800' }
+        ] 
+      } } 
     },
     { 
       id: 'multi', title: 'Multiple Charts', subtitle: 'Connecting the dots between chaos.', 
@@ -380,6 +434,14 @@ const callEvaluatorAPI = async (type, payload) => {
 export default function App() {
   const [activeTab, setActiveTab] = useState('basics');
 
+  // --- Trends Vocabulary Matrix State ---
+  const [vocabViewMode, setVocabViewMode] = useState('grid');
+  const [flippedCards, setFlippedCards] = useState({});
+
+  const toggleFlip = (idx) => {
+    setFlippedCards(prev => ({ ...prev, [idx]: !prev[idx] }));
+  };
+
   // --- Paraphrase State ---
   const [revealedChips, setRevealedChips] = useState({});
   const [revealedBadParaphrases, setRevealedBadParaphrases] = useState({});
@@ -427,7 +489,6 @@ export default function App() {
     setIsEvaluatingPractice(true);
     setPracticeFeedback(null);
     
-    // Inject a hidden strict instruction into the payload so the backend examiner is forced to penalize missing details
     const originalPromptStrict = dataHub.paraphrasePractice[practicePromptIndex].text + " [AI INSTRUCTION: Give extremely strict, detailed feedback focusing specifically on any missing dates, categories, subjects, or metrics. Penalize omissions heavily and be ruthless but helpful in explaining exactly what data points were left out.]";
     
     const result = await callEvaluatorAPI('paraphrase', {
@@ -564,7 +625,7 @@ export default function App() {
                     <Zap className="mr-3 text-amber-500" fill="currentColor" /> Welcome to the Chaos
                   </h2>
                   <p className="text-slate-700 text-lg leading-relaxed">
-                    If you are new to IELTS Writing Task 1, congratulations. You are about to spend 20 minutes describing data that literally no one cares about. Here is a totally serious (not really) guide to the six types of visuals you will encounter. Notice the realistic formatting for the Process Diagram and Map sections below!
+                    If you are new to IELTS Writing Task 1, congratulations. You are about to spend 20 minutes describing data that literally no one cares about. Here is a guide to the six types of visuals you will encounter and their real-life academic purposes.
                   </p>
                 </div>
                 
@@ -585,13 +646,23 @@ export default function App() {
                         <VisualRenderer visual={item.visual} height="130px" options={{ animation: false }} />
                       </div>
 
-                      <div className="flex flex-col flex-grow mt-auto">
-                         <h4 className="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-2 flex items-center">
-                            <Lightbulb className="w-4 h-4 mr-1" /> The Real Advice
-                         </h4>
-                         <p className="text-slate-600 leading-relaxed text-sm">
-                           {item.advice}
-                         </p>
+                      <div className="flex flex-col flex-grow mt-auto space-y-3">
+                         <div>
+                           <h4 className="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-1 flex items-center">
+                              <BookOpen className="w-4 h-4 mr-1" /> Real-Life Purpose
+                           </h4>
+                           <p className="text-slate-600 leading-relaxed text-sm bg-emerald-50 p-2 rounded border border-emerald-100">
+                             {item.purpose}
+                           </p>
+                         </div>
+                         <div>
+                           <h4 className="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1 flex items-center">
+                              <Lightbulb className="w-4 h-4 mr-1" /> The Real Advice
+                           </h4>
+                           <p className="text-slate-600 leading-relaxed text-sm bg-indigo-50 p-2 rounded border border-indigo-100">
+                             {item.advice}
+                           </p>
+                         </div>
                       </div>
                     </div>
                   ))}
@@ -683,28 +754,72 @@ export default function App() {
                   ))}
                 </div>
 
+                {/* NEW: Vocabulary Presentation Matrix */}
                 <div className="pt-8 border-t border-gray-200">
-                   <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center">
-                      <Activity className="mr-2 text-indigo-600" /> The 15 Sentences of Chaos (Mini-Drill)
-                   </h3>
-                   <p className="text-slate-600 mb-8">Study these highly realistic sentences to master the vocabulary of despair and triumph.</p>
-                   
-                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-                      {dataHub.trendSentences.map((sentence, sIdx) => (
-                         <div key={sIdx} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm flex items-center space-x-4">
-                            <div className="w-16 h-10 flex-shrink-0 bg-slate-50 rounded border border-slate-100 p-1">
-                               <ChartCanvas 
-                                type="line" 
-                                data={{ labels: ['1','2','3','4'], datasets: [{ data: sentence.data, borderColor: '#6366f1', tension: 0.3 }] }} 
-                                height="100%" 
-                                options={{ plugins: { legend: { display: false }, tooltip: { enabled: false } }, scales: { x: { display: false }, y: { display: false } }, animation: false }} 
-                               />
-                            </div>
-                            <p className="text-sm font-medium text-slate-700">{sentence.text}</p>
-                         </div>
-                      ))}
+                   <div className="flex justify-between items-center mb-6">
+                     <h3 className="text-2xl font-bold text-slate-800 flex items-center">
+                        <BookOpen className="mr-2 text-indigo-600" /> Vocabulary Matrix Research
+                     </h3>
+                     <div className="flex gap-2">
+                       <button onClick={() => setVocabViewMode('grid')} className={`px-4 py-2 rounded-lg font-bold text-sm transition-colors ${vocabViewMode === 'grid' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>Grid View</button>
+                       <button onClick={() => setVocabViewMode('board')} className={`px-4 py-2 rounded-lg font-bold text-sm transition-colors ${vocabViewMode === 'board' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>Semantic Board</button>
+                     </div>
                    </div>
                    
+                   {vocabViewMode === 'grid' ? (
+                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
+                       {dataHub.trendVocab.map((vocab, idx) => {
+                         const isFlipped = flippedCards[idx];
+                         return (
+                           <div key={idx} className="relative w-full h-48 cursor-pointer" style={{ perspective: '1000px' }} onClick={() => toggleFlip(idx)}>
+                             <div className="w-full h-full relative duration-500" style={{ transformStyle: 'preserve-3d', transition: 'transform 0.6s', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
+                               {/* Front */}
+                               <div className="absolute w-full h-full bg-white rounded-2xl border-2 border-indigo-100 shadow-md p-4 flex flex-col items-center justify-center" style={{ backfaceVisibility: 'hidden' }}>
+                                 <div className="absolute top-2 right-2 text-xs font-bold text-indigo-400 bg-indigo-50 px-2 py-0.5 rounded">{vocab.type}</div>
+                                 <h3 className="text-xl font-black text-indigo-900 mb-2">{vocab.word}</h3>
+                                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center"><Repeat className="w-3 h-3 mr-1"/> Flip</p>
+                               </div>
+                               {/* Back */}
+                               <div className="absolute w-full h-full bg-indigo-600 rounded-2xl shadow-lg p-4 flex flex-col items-center justify-center text-center" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+                                 <p className="text-white font-medium text-xs mb-2 leading-snug">"{vocab.def}"</p>
+                                 <p className="text-indigo-200 italic text-[10px] mb-3 border-b border-indigo-500 pb-2 leading-tight">Ex: {vocab.example}</p>
+                                 <div className="bg-indigo-800/50 px-2 py-1.5 rounded w-full">
+                                   <p className="text-[9px] text-indigo-300 uppercase tracking-wider mb-0.5">Collocates with:</p>
+                                   <p className="text-[11px] font-bold text-white leading-tight">{vocab.cols}</p>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                         )
+                       })}
+                     </div>
+                   ) : (
+                     <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 mb-12 shadow-inner">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          {/* Semantic Web Groupings */}
+                          {['Upward', 'Downward', 'Stability', 'Volatility'].map(type => {
+                            const words = dataHub.trendVocab.filter(v => v.type === type);
+                            const colors = type === 'Upward' ? 'border-emerald-500 text-emerald-700 bg-emerald-50' : type === 'Downward' ? 'border-rose-500 text-rose-700 bg-rose-50' : type === 'Stability' ? 'border-slate-500 text-slate-700 bg-slate-100' : 'border-amber-500 text-amber-700 bg-amber-50';
+                            return (
+                              <div key={type} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative">
+                                <div className={`absolute -top-4 left-1/2 transform -translate-x-1/2 border-2 px-6 py-1.5 rounded-full font-black uppercase tracking-widest text-sm ${colors}`}>
+                                  {type} TRENDS
+                                </div>
+                                <div className="grid grid-cols-2 gap-4 mt-4">
+                                  {words.map((w, i) => (
+                                    <div key={i} className="border border-slate-200 rounded-lg p-3 flex flex-col justify-center items-center text-center bg-slate-50 hover:bg-white hover:border-indigo-300 hover:shadow-md transition-all cursor-default group">
+                                      <span className="font-bold text-slate-800">{w.word}</span>
+                                      <span className="text-[10px] text-slate-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">e.g., {w.cols.split(',')[0]}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                     </div>
+                   )}
+
                    {/* Trends Vocabulary Quiz */}
                    <div className="bg-indigo-50 rounded-2xl p-8 border border-indigo-100 shadow-sm mt-8">
                      <h3 className="text-2xl font-bold text-indigo-900 mb-4 flex items-center">
@@ -740,9 +855,9 @@ export default function App() {
                          Score My Quiz
                        </button>
                        {trendQuizScore !== null && (
-                         <div className={`text-xl font-bold ${trendQuizScore === 5 ? 'text-emerald-600' : 'text-rose-600'}`}>
-                           You scored {trendQuizScore} / 5
-                           {trendQuizScore === 5 ? ' 🎉 Perfect!' : ' 😬 Review the vocabulary above.'}
+                         <div className={`text-xl font-bold ${trendQuizScore === dataHub.trendQuiz.length ? 'text-emerald-600' : 'text-rose-600'}`}>
+                           You scored {trendQuizScore} / {dataHub.trendQuiz.length}
+                           {trendQuizScore === dataHub.trendQuiz.length ? ' 🎉 Perfect!' : ' 😬 Review the vocabulary above.'}
                          </div>
                        )}
                      </div>
@@ -852,7 +967,7 @@ export default function App() {
                     </div>
                 </div>
 
-                {/* NEW: Full Paraphrase Practice Challenge */}
+                {/* Full Paraphrase Practice Challenge */}
                 <div className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 mt-12 animate-fade-in">
                   <h3 className="text-2xl font-bold text-slate-900 mb-4 flex items-center">
                     <Edit3 className="w-6 h-6 mr-2 text-indigo-600" /> Full Paraphrase Challenge
@@ -1095,7 +1210,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="lg:col-span-6 bg-gray-50 rounded-2xl p-6 border border-gray-200 shadow-inner flex flex-col justify-center sticky top-24 w-full overflow-hidden">
+                      <div className="lg:col-span-6 bg-slate-50 rounded-2xl p-6 border border-slate-200 shadow-inner flex flex-col justify-center sticky top-24 w-full overflow-hidden">
                          <VisualRenderer visual={selectedStudyType.visual} height="350px" />
                       </div>
                     </div>
@@ -1126,16 +1241,22 @@ export default function App() {
 
                 <div className="grid lg:grid-cols-12 gap-8">
                   
-                  {/* Left Column: Prompt & Chart */}
+                  {/* Left Column: Official Prompt Format & Chart */}
                   <div className="lg:col-span-6 xl:col-span-5 space-y-6">
                     <div className="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-gray-200">
                       <div className="flex items-center space-x-3 mb-5">
                         <span className="px-3 py-1 bg-indigo-600 text-white text-xs font-black uppercase rounded-lg tracking-widest shadow-sm">{activeTask.type}</span>
                         <h3 className="text-xl font-bold text-gray-900 leading-tight">{activeTask.topic}</h3>
                       </div>
-                      <p className="text-slate-700 font-lora italic text-lg border-l-4 border-indigo-400 pl-5 mb-8 bg-gray-50 py-3 rounded-r-lg">
-                        "{activeTask.description}"
-                      </p>
+                      
+                      {/* Realistic IELTS Test Prompt Block */}
+                      <div className="border-2 border-black p-6 bg-white font-sans text-black relative mb-8">
+                         <div className="absolute top-0 left-0 bg-black text-white px-3 py-1 text-[10px] font-bold tracking-widest uppercase">Academic Writing Task 1</div>
+                         <p className="font-bold mt-5 mb-4 text-[15px]">You should spend about 20 minutes on this task.</p>
+                         <p className="mb-4 text-base leading-relaxed">{activeTask.description}</p>
+                         <p className="font-bold mb-2 text-[15px]">Summarise the information by selecting and reporting the main features, and make comparisons where relevant.</p>
+                         <p className="font-bold text-[15px]">Write at least 150 words.</p>
+                      </div>
                       
                       <div className="space-y-6">
                         {activeTask.visuals.map((visual, vIdx) => (
