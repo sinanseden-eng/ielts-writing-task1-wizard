@@ -91,19 +91,19 @@ const ProcessVisual = ({ title, steps }) => (
 
 const MapVisual = ({ title1, title2, features1, features2 }) => {
   const renderMap = (title, features) => (
-    <div className="bg-white border border-slate-200 rounded-xl p-4 md:p-6 w-full shadow-sm">
-      <h4 className="text-center font-bold text-slate-800 mb-4 md:mb-6">{title}</h4>
-      <div className="relative w-full h-80 md:h-96 bg-[#dcfce7] border-2 border-[#86efac] rounded-lg overflow-hidden flex flex-col shadow-inner">
-        {/* River layer */}
-        <div className="absolute top-1/3 left-0 w-full h-16 bg-blue-200 border-y-2 border-blue-300 transform -translate-y-1/2 opacity-70"></div>
-        {/* Road layer */}
-        <div className="absolute top-0 left-1/3 w-16 h-full bg-slate-300 border-x-2 border-slate-400 opacity-60"></div>
+    <div className="bg-white border border-slate-200 rounded-xl p-3 md:p-6 w-full shadow-sm">
+      <h4 className="text-center font-bold text-slate-800 mb-3 md:mb-6">{title}</h4>
+      <div className="relative w-full h-[280px] sm:h-[320px] md:h-[400px] bg-[#dcfce7] border-2 border-[#86efac] rounded-lg overflow-hidden flex flex-col shadow-inner">
+        {/* River layer - Centered Horizontally */}
+        <div className="absolute top-1/2 left-0 w-full h-12 md:h-16 bg-blue-200 border-y-2 border-blue-300 transform -translate-y-1/2 opacity-70"></div>
+        {/* Road layer - Centered Vertically */}
+        <div className="absolute top-0 left-1/2 w-12 md:w-16 h-full bg-slate-300 border-x-2 border-slate-400 opacity-60 transform -translate-x-1/2"></div>
         
         {/* Plotted Features */}
         {features.map((f, i) => (
-          <div key={i} className={`absolute flex flex-col items-center justify-center p-2 md:p-3 rounded-lg shadow-md border-2 bg-white z-10 w-20 md:w-24 ${f.pos}`}>
-            <span className="text-2xl md:text-3xl mb-1">{f.icon}</span>
-            <span className="text-[10px] md:text-xs font-bold mt-1 text-slate-800 text-center leading-tight break-words">{f.label}</span>
+          <div key={i} className={`absolute flex flex-col items-center justify-center p-1.5 sm:p-2 md:p-3 rounded-lg shadow-md border-2 bg-white z-10 w-[72px] sm:w-[84px] md:w-[96px] ${f.pos}`}>
+            <span className="text-xl sm:text-2xl md:text-3xl mb-0.5 md:mb-1">{f.icon}</span>
+            <span className="text-[9px] sm:text-[10px] md:text-xs font-bold mt-0.5 text-slate-800 text-center leading-tight break-words">{f.label}</span>
           </div>
         ))}
       </div>
@@ -111,7 +111,7 @@ const MapVisual = ({ title1, title2, features1, features2 }) => {
   );
 
   return (
-    <div className="flex flex-col xl:flex-row gap-6 md:gap-8 w-full items-center justify-center bg-slate-50 p-6 md:p-8 rounded-xl border border-slate-200">
+    <div className="flex flex-col xl:flex-row gap-6 md:gap-8 w-full items-center justify-center bg-slate-50 p-4 md:p-8 rounded-xl border border-slate-200">
       {renderMap(title1, features1)}
       <div className="hidden xl:flex flex-col items-center justify-center px-2">
         <ArrowRight className="w-10 h-10 text-slate-400 flex-shrink-0" />
@@ -176,9 +176,9 @@ const dataHub = {
       title: 'Town Redevelopment',
       visual: { type: 'map', data: { 
         title1: 'Village in 2000', 
-        features1: [{ label: 'Forest', icon: '🌲', pos: 'top-4 right-4 border-emerald-400' }, { label: 'Farm', icon: '🐄', pos: 'bottom-4 left-4 border-amber-400' }, { label: 'Post Office', icon: '✉️', pos: 'top-4 left-4 border-slate-400' }], 
+        features1: [{ label: 'Forest', icon: '🌲', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }, { label: 'Farm', icon: '🐄', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-400' }, { label: 'Post Office', icon: '✉️', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-slate-400' }], 
         title2: 'Village in 2024', 
-        features2: [{ label: 'Golf Course', icon: '⛳', pos: 'top-4 right-4 border-emerald-500' }, { label: 'Apartments', icon: '🏢', pos: 'bottom-4 left-4 border-rose-400' }, { label: 'Shopping Mall', icon: '🏬', pos: 'top-4 left-4 border-indigo-400' }] 
+        features2: [{ label: 'Golf Course', icon: '⛳', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-500' }, { label: 'Apartments', icon: '🏢', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, { label: 'Shopping Mall', icon: '🏬', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-indigo-400' }] 
       } }
     }
   ],
@@ -386,19 +386,19 @@ const dataHub = {
       visual: { type: 'map', data: { 
         title1: 'Town 1990', 
         features1: [
-          { label: 'Forest', icon: '🌲', pos: 'top-4 right-4 border-emerald-400' }, 
-          { label: 'Old Farm', icon: '🐄', pos: 'bottom-4 left-4 border-amber-400' }, 
-          { label: 'Post Office', icon: '✉️', pos: 'top-4 left-4 border-slate-400' },
-          { label: 'Wooden Bridge', icon: '🌉', pos: 'top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-amber-800' },
-          { label: 'Dirt Road', icon: '🛤️', pos: 'bottom-4 right-4 border-amber-700' }
+          { label: 'Forest', icon: '🌲', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }, 
+          { label: 'Old Farm', icon: '🐄', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-400' }, 
+          { label: 'Post Office', icon: '✉️', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-slate-400' },
+          { label: 'Wooden Bridge', icon: '🌉', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-amber-800' },
+          { label: 'Dirt Road', icon: '🛤️', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-amber-700' }
         ], 
         title2: 'Town 2024', 
         features2: [
-          { label: 'University', icon: '🎓', pos: 'top-4 right-4 border-indigo-500' }, 
-          { label: 'Luxury Apts', icon: '🏢', pos: 'bottom-4 left-4 border-rose-400' }, 
-          { label: 'Shopping Mall', icon: '🏬', pos: 'top-4 left-4 border-indigo-400' },
-          { label: 'Concrete Bridge', icon: '🌉', pos: 'top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-slate-500' },
-          { label: 'Dual Carriageway', icon: '🛣️', pos: 'bottom-4 right-4 border-slate-800' }
+          { label: 'University', icon: '🎓', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-500' }, 
+          { label: 'Luxury Apts', icon: '🏢', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, 
+          { label: 'Shopping Mall', icon: '🏬', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-indigo-400' },
+          { label: 'Concrete Bridge', icon: '🌉', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-slate-500' },
+          { label: 'Dual Carriageway', icon: '🛣️', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-slate-800' }
         ] 
       } } 
     },
@@ -432,8 +432,8 @@ const dataHub = {
     { id: "process-002", type: "Process", topic: "Hydroelectric Power Generation", description: "The diagram shows how electricity is generated in a hydroelectric power station.", key_data: "Water flows from a high reservoir through an intake valve, spins a turbine, which powers a generator, before electricity is sent via power lines.", visuals: [{ type: 'process', data: { title: "Hydroelectric Dam Operation", steps: [{ label: 'Reservoir', icon: '🌊' }, { label: 'Intake Valve', icon: '🎛️' }, { label: 'Turbine', icon: '⚙️' }, { label: 'Generator', icon: '⚡' }, { label: 'Power Lines', icon: '🗼' }] } }] },
 
     // --- MAPS & PLANS (2) ---
-    { id: "map-001", type: "Map", topic: "Island Tourist Resort", description: "The two maps show a small island before and after the construction of tourist facilities.", key_data: "A previously undeveloped island saw the construction of a hotel, restaurant, and pier. Trees were retained, but a beach area was developed for swimming.", visuals: [{ type: 'map', data: { title1: 'Before Development', features1: [{ label: 'Beach', icon: '🏖️', pos: 'bottom-4 left-4 border-amber-200' }, { label: 'Trees', icon: '🌴', pos: 'top-4 right-4 border-emerald-400' }], title2: 'After Development', features2: [{ label: 'Hotel', icon: '🏨', pos: 'bottom-4 left-4 border-rose-400' }, { label: 'Restaurant', icon: '🍽️', pos: 'top-4 right-4 border-indigo-400' }, { label: 'Pier', icon: '⛵', pos: 'bottom-4 right-4 border-slate-400' }] } }] },
-    { id: "map-002", type: "Map", topic: "Hospital Parking Redevelopment", description: "The maps illustrate changes to the road access and parking facilities around a city hospital from 2007 to 2010.", key_data: "The staff car park and public parking were separated. Two new roundabouts and a new bus station were constructed to improve traffic flow.", visuals: [{ type: 'map', data: { title1: 'Hospital 2007', features1: [{ label: 'Mixed Parking', icon: '🚗', pos: 'bottom-4 left-4 border-slate-400' }, { label: 'Bus Stops', icon: '🚏', pos: 'top-4 right-4 border-amber-400' }], title2: 'Hospital 2010', features2: [{ label: 'Staff Parking', icon: '🅿️', pos: 'bottom-4 left-4 border-rose-400' }, { label: 'Public Parking', icon: '🚗', pos: 'top-4 right-4 border-indigo-400' }, { label: 'Roundabouts', icon: '🔄', pos: 'bottom-4 right-4 border-emerald-400' }] } }] },
+    { id: "map-001", type: "Map", topic: "Island Tourist Resort", description: "The two maps show a small island before and after the construction of tourist facilities.", key_data: "A previously undeveloped island saw the construction of a hotel, restaurant, and pier. Trees were retained, but a beach area was developed for swimming.", visuals: [{ type: 'map', data: { title1: 'Before Development', features1: [{ label: 'Beach', icon: '🏖️', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-200' }, { label: 'Trees', icon: '🌴', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }], title2: 'After Development', features2: [{ label: 'Hotel', icon: '🏨', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, { label: 'Restaurant', icon: '🍽️', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-400' }, { label: 'Pier', icon: '⛵', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-slate-400' }] } }] },
+    { id: "map-002", type: "Map", topic: "Hospital Parking Redevelopment", description: "The maps illustrate changes to the road access and parking facilities around a city hospital from 2007 to 2010.", key_data: "The staff car park and public parking were separated. Two new roundabouts and a new bus station were constructed to improve traffic flow.", visuals: [{ type: 'map', data: { title1: 'Hospital 2007', features1: [{ label: 'Mixed Parking', icon: '🚗', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-slate-400' }, { label: 'Bus Stops', icon: '🚏', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-amber-400' }], title2: 'Hospital 2010', features2: [{ label: 'Staff Parking', icon: '🅿️', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, { label: 'Public Parking', icon: '🚗', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-400' }, { label: 'Roundabouts', icon: '🔄', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-emerald-400' }] } }] },
 
     // --- MULTIPLE CHARTS (4) ---
     { id: "multi-001", type: "Multiple", topic: "Transport & Commuting", description: "The line graph shows car ownership in the UK from 1971 to 2007, while the bar chart compares the main methods of commuting to work in 2007.", key_data: "Car ownership grew steadily, with households owning 2 or more cars rising sharply. Consequently, in 2007, the car was the dominant commuting method.", visuals: [
