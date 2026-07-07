@@ -91,19 +91,19 @@ const ProcessVisual = ({ title, steps }) => (
 
 const MapVisual = ({ title1, title2, features1, features2 }) => {
   const renderMap = (title, features) => (
-    <div className="bg-white border border-slate-200 rounded-xl p-4 w-full shadow-sm">
-      <h4 className="text-center font-bold text-slate-800 mb-4">{title}</h4>
-      <div className="relative w-full h-64 bg-[#dcfce7] border-2 border-[#86efac] rounded-lg overflow-hidden flex flex-col shadow-inner">
+    <div className="bg-white border border-slate-200 rounded-xl p-4 md:p-6 w-full shadow-sm">
+      <h4 className="text-center font-bold text-slate-800 mb-4 md:mb-6">{title}</h4>
+      <div className="relative w-full h-80 md:h-96 bg-[#dcfce7] border-2 border-[#86efac] rounded-lg overflow-hidden flex flex-col shadow-inner">
         {/* River layer */}
-        <div className="absolute top-1/3 left-0 w-full h-12 bg-blue-200 border-y-2 border-blue-300 transform -translate-y-1/2 opacity-70"></div>
+        <div className="absolute top-1/3 left-0 w-full h-16 bg-blue-200 border-y-2 border-blue-300 transform -translate-y-1/2 opacity-70"></div>
         {/* Road layer */}
-        <div className="absolute top-0 left-1/3 w-10 h-full bg-slate-300 border-x-2 border-slate-400 opacity-60"></div>
+        <div className="absolute top-0 left-1/3 w-16 h-full bg-slate-300 border-x-2 border-slate-400 opacity-60"></div>
         
         {/* Plotted Features */}
         {features.map((f, i) => (
-          <div key={i} className={`absolute flex flex-col items-center justify-center p-2 rounded-lg shadow-md border-2 bg-white z-10 ${f.pos}`}>
-            <span className="text-2xl">{f.icon}</span>
-            <span className="text-[10px] font-bold mt-1 text-slate-800 text-center leading-none whitespace-nowrap">{f.label}</span>
+          <div key={i} className={`absolute flex flex-col items-center justify-center p-2 md:p-3 rounded-lg shadow-md border-2 bg-white z-10 w-20 md:w-24 ${f.pos}`}>
+            <span className="text-2xl md:text-3xl mb-1">{f.icon}</span>
+            <span className="text-[10px] md:text-xs font-bold mt-1 text-slate-800 text-center leading-tight break-words">{f.label}</span>
           </div>
         ))}
       </div>
@@ -111,9 +111,11 @@ const MapVisual = ({ title1, title2, features1, features2 }) => {
   );
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 w-full items-center justify-center bg-slate-50 p-6 rounded-xl border border-slate-200">
+    <div className="flex flex-col xl:flex-row gap-6 md:gap-8 w-full items-center justify-center bg-slate-50 p-6 md:p-8 rounded-xl border border-slate-200">
       {renderMap(title1, features1)}
-      <ArrowRight className="w-8 h-8 text-slate-400 hidden lg:block flex-shrink-0" />
+      <div className="hidden xl:flex flex-col items-center justify-center px-2">
+        <ArrowRight className="w-10 h-10 text-slate-400 flex-shrink-0" />
+      </div>
       {renderMap(title2, features2)}
     </div>
   );
@@ -174,9 +176,9 @@ const dataHub = {
       title: 'Town Redevelopment',
       visual: { type: 'map', data: { 
         title1: 'Village in 2000', 
-        features1: [{ label: 'Forest', icon: '🌲', pos: 'top-2 right-2 border-emerald-400' }, { label: 'Farm', icon: '🐄', pos: 'bottom-2 left-2 border-amber-400' }, { label: 'Post Office', icon: '✉️', pos: 'top-2 left-2 border-slate-400' }], 
+        features1: [{ label: 'Forest', icon: '🌲', pos: 'top-4 right-4 border-emerald-400' }, { label: 'Farm', icon: '🐄', pos: 'bottom-4 left-4 border-amber-400' }, { label: 'Post Office', icon: '✉️', pos: 'top-4 left-4 border-slate-400' }], 
         title2: 'Village in 2024', 
-        features2: [{ label: 'Golf Course', icon: '⛳', pos: 'top-2 right-2 border-emerald-500' }, { label: 'Apartments', icon: '🏢', pos: 'bottom-2 left-2 border-rose-400' }, { label: 'Shopping Mall', icon: '🏬', pos: 'top-2 left-2 border-indigo-400' }] 
+        features2: [{ label: 'Golf Course', icon: '⛳', pos: 'top-4 right-4 border-emerald-500' }, { label: 'Apartments', icon: '🏢', pos: 'bottom-4 left-4 border-rose-400' }, { label: 'Shopping Mall', icon: '🏬', pos: 'top-4 left-4 border-indigo-400' }] 
       } }
     }
   ],
@@ -335,19 +337,19 @@ const dataHub = {
       visual: { type: 'map', data: { 
         title1: 'Town 1990', 
         features1: [
-          { label: 'Forest', icon: '🌲', pos: 'top-2 right-2 border-emerald-400' }, 
-          { label: 'Old Farm', icon: '🐄', pos: 'bottom-2 left-2 border-amber-400' }, 
-          { label: 'Post Office', icon: '✉️', pos: 'top-2 left-2 border-slate-400' },
+          { label: 'Forest', icon: '🌲', pos: 'top-4 right-4 border-emerald-400' }, 
+          { label: 'Old Farm', icon: '🐄', pos: 'bottom-4 left-4 border-amber-400' }, 
+          { label: 'Post Office', icon: '✉️', pos: 'top-4 left-4 border-slate-400' },
           { label: 'Wooden Bridge', icon: '🌉', pos: 'top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-amber-800' },
-          { label: 'Dirt Road', icon: '🛤️', pos: 'bottom-2 right-2 border-amber-700' }
+          { label: 'Dirt Road', icon: '🛤️', pos: 'bottom-4 right-4 border-amber-700' }
         ], 
         title2: 'Town 2024', 
         features2: [
-          { label: 'University', icon: '🎓', pos: 'top-2 right-2 border-indigo-500' }, 
-          { label: 'Luxury Apts', icon: '🏢', pos: 'bottom-2 left-2 border-rose-400' }, 
-          { label: 'Shopping Mall', icon: '🏬', pos: 'top-2 left-2 border-indigo-400' },
+          { label: 'University', icon: '🎓', pos: 'top-4 right-4 border-indigo-500' }, 
+          { label: 'Luxury Apts', icon: '🏢', pos: 'bottom-4 left-4 border-rose-400' }, 
+          { label: 'Shopping Mall', icon: '🏬', pos: 'top-4 left-4 border-indigo-400' },
           { label: 'Concrete Bridge', icon: '🌉', pos: 'top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-slate-500' },
-          { label: 'Dual Carriageway', icon: '🛣️', pos: 'bottom-2 right-2 border-slate-800' }
+          { label: 'Dual Carriageway', icon: '🛣️', pos: 'bottom-4 right-4 border-slate-800' }
         ] 
       } } 
     },
@@ -754,7 +756,7 @@ export default function App() {
                   ))}
                 </div>
 
-                {/* NEW: Vocabulary Presentation Matrix */}
+                {/* Vocabulary Presentation Matrix */}
                 <div className="pt-8 border-t border-gray-200">
                    <div className="flex justify-between items-center mb-6">
                      <h3 className="text-2xl font-bold text-slate-800 flex items-center">
@@ -776,7 +778,8 @@ export default function App() {
                                {/* Front */}
                                <div className="absolute w-full h-full bg-white rounded-2xl border-2 border-indigo-100 shadow-md p-4 flex flex-col items-center justify-center" style={{ backfaceVisibility: 'hidden' }}>
                                  <div className="absolute top-2 right-2 text-xs font-bold text-indigo-400 bg-indigo-50 px-2 py-0.5 rounded">{vocab.type}</div>
-                                 <h3 className="text-xl font-black text-indigo-900 mb-2">{vocab.word}</h3>
+                                 <h3 className="text-xl font-black text-indigo-900 mb-1 text-center leading-tight">{vocab.word}</h3>
+                                 <span className="text-3xl mt-1 mb-2">{vocab.icon}</span>
                                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center"><Repeat className="w-3 h-3 mr-1"/> Flip</p>
                                </div>
                                {/* Back */}
@@ -795,21 +798,32 @@ export default function App() {
                      </div>
                    ) : (
                      <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 mb-12 shadow-inner">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
                           {/* Semantic Web Groupings */}
-                          {['Upward', 'Downward', 'Stability', 'Volatility'].map(type => {
+                          {['Upward', 'Downward', 'Extremes', 'Stability', 'Volatility'].map(type => {
                             const words = dataHub.trendVocab.filter(v => v.type === type);
-                            const colors = type === 'Upward' ? 'border-emerald-500 text-emerald-700 bg-emerald-50' : type === 'Downward' ? 'border-rose-500 text-rose-700 bg-rose-50' : type === 'Stability' ? 'border-slate-500 text-slate-700 bg-slate-100' : 'border-amber-500 text-amber-700 bg-amber-50';
+                            if (words.length === 0) return null; // Safety check
+                            
+                            let colors = '';
+                            if (type === 'Upward') colors = 'border-emerald-500 text-emerald-700 bg-emerald-50';
+                            else if (type === 'Downward') colors = 'border-rose-500 text-rose-700 bg-rose-50';
+                            else if (type === 'Extremes') colors = 'border-purple-500 text-purple-700 bg-purple-50';
+                            else if (type === 'Stability') colors = 'border-slate-400 text-slate-700 bg-slate-100';
+                            else colors = 'border-amber-500 text-amber-700 bg-amber-50';
+                            
                             return (
-                              <div key={type} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative">
-                                <div className={`absolute -top-4 left-1/2 transform -translate-x-1/2 border-2 px-6 py-1.5 rounded-full font-black uppercase tracking-widest text-sm ${colors}`}>
+                              <div key={type} className={`bg-white p-6 rounded-xl border-2 ${colors.split(' ')[0]} shadow-sm relative`}>
+                                <div className={`absolute -top-4 left-1/2 transform -translate-x-1/2 border-2 px-6 py-1.5 rounded-full font-black uppercase tracking-widest text-sm ${colors} bg-white whitespace-nowrap`}>
                                   {type} TRENDS
                                 </div>
-                                <div className="grid grid-cols-2 gap-4 mt-4">
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
                                   {words.map((w, i) => (
                                     <div key={i} className="border border-slate-200 rounded-lg p-3 flex flex-col justify-center items-center text-center bg-slate-50 hover:bg-white hover:border-indigo-300 hover:shadow-md transition-all cursor-default group">
-                                      <span className="font-bold text-slate-800">{w.word}</span>
-                                      <span className="text-[10px] text-slate-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">e.g., {w.cols.split(',')[0]}</span>
+                                      <span className="font-bold text-slate-800 text-sm leading-tight mb-1">{w.word}</span>
+                                      <span className="text-2xl">{w.icon}</span>
+                                      <span className="text-[10px] text-slate-500 mt-2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap overflow-hidden text-ellipsis max-w-full">
+                                        e.g., {w.cols.split(',')[0]}
+                                      </span>
                                     </div>
                                   ))}
                                 </div>
@@ -1171,7 +1185,7 @@ export default function App() {
                     </button>
 
                     <div className="grid lg:grid-cols-12 gap-12 items-start">
-                      <div className="lg:col-span-6">
+                      <div className="lg:col-span-6 xl:col-span-5">
                         <h2 className="text-4xl font-lora font-bold text-slate-900 mb-3">{selectedStudyType.title}</h2>
                         <p className="text-xl text-indigo-600 font-medium mb-8 italic">{selectedStudyType.subtitle}</p>
                         
@@ -1210,7 +1224,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="lg:col-span-6 bg-slate-50 rounded-2xl p-6 border border-slate-200 shadow-inner flex flex-col justify-center sticky top-24 w-full overflow-hidden">
+                      <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center sticky top-24 w-full overflow-hidden">
                          <VisualRenderer visual={selectedStudyType.visual} height="350px" />
                       </div>
                     </div>
