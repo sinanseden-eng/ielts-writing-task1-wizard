@@ -1481,7 +1481,23 @@ export default function App() {
                 )}
               </section>
             )}
+)}
 
+          </div>
+
+          {/* Elegant Translucent Signature Footer */}
+          <footer className="py-6 border-t border-slate-200/40 flex flex-col items-center justify-center relative overflow-hidden bg-white/20 backdrop-blur-sm rounded-b-2xl">
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 drop-shadow-sm">Crafted with ❤️ by</p>
+            <span style={{ fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Pacifico', 'Apple Chancery', cursive" }} className="text-3xl italic tracking-widest text-indigo-700 drop-shadow-sm hover:text-indigo-500 transition-colors cursor-default select-none">
+              Sinan
+            </span>
+          </footer>
+
+        </div>
+      </div>
+    </div>
+  );
+}
           </div>
         </div>
       </div>
