@@ -193,7 +193,7 @@ const dataHub = {
       advice: 'No trends here! Describe steps in order using the passive voice ("is heated", "is filtered"). Use time connectors (First, subsequently, finally).',
       purpose: 'Found in operational manuals and scientific reports to clearly explain the sequential stages of a manufacturing system or natural life cycle.',
       title: 'Brick Manufacturing Process',
-      visual: { type: 'process', data: { title: 'How bricks are produced for the building industry', steps: [{ label: 'Digging Clay', icon: '🚜' }, { label: 'Metal Grid', icon: '🎛️' }, { label: 'Add Water', icon: '💧' }, { label: 'Wire Cutter', icon: '✂️' }, { label: 'Oven (48h)', icon: '♨️' }, { label: 'Kiln', icon: '🔥' }, { label: 'Delivery', icon: '🚚' }] } }
+      visual: { type: 'process', data: { title: 'How bricks are produced for the building industry', steps: [{ label: 'Digging Clay', icon: ' 🚜 ' }, { label: 'Metal Grid', icon: ' 🎛️ ' }, { label: 'Add Water', icon: ' 💧 ' }, { label: 'Wire Cutter', icon: ' ✂️ ' }, { label: 'Oven (48h)', icon: ' ♨️ ' }, { label: 'Kiln', icon: ' 🔥 ' }, { label: 'Delivery', icon: ' 🚚 ' }] } }
     },
     { 
       type: 'Map / Plan', icon: <MapIcon className="w-6 h-6 text-purple-500"/>, 
@@ -202,9 +202,9 @@ const dataHub = {
       title: 'Town Redevelopment',
       visual: { type: 'map', data: { 
         title1: 'Village in 2000', 
-        features1: [{ label: 'Forest', icon: '🌲', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }, { label: 'Farm', icon: '🐄', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-400' }, { label: 'Post Office', icon: '✉️', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-slate-400' }], 
+        features1: [{ label: 'Forest', icon: ' 🌲 ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }, { label: 'Farm', icon: ' 🐄 ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-400' }, { label: 'Post Office', icon: ' ✉️ ', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-slate-400' }], 
         title2: 'Village in 2024', 
-        features2: [{ label: 'Golf Course', icon: '⛳', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-500' }, { label: 'Apartments', icon: '🏢', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, { label: 'Shopping Mall', icon: '🏬', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-indigo-400' }] 
+        features2: [{ label: 'Golf Course', icon: ' ⛳ ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-500' }, { label: 'Apartments', icon: ' 🏢 ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, { label: 'Shopping Mall', icon: ' 🏬 ', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-indigo-400' }] 
       } }
     }
   ],
@@ -213,64 +213,58 @@ const dataHub = {
   },
   trendVocab: [
     // Upward Trends
-    { word: 'Rise', type: 'Upward', def: 'To move upwards or increase in amount.', example: 'Profits began to rise in the second quarter.', cols: 'Steadily, Sharply, Gradually', icon: '📈' },
-    { word: 'Increase', type: 'Upward', def: 'To become larger in amount or number.', example: 'There was an increase in tourism.', cols: 'Significantly, Gradually', icon: '➕' },
-    { word: 'Climb', type: 'Upward', def: 'To go up or increase, often steadily.', example: 'Interest rates climbed to 5%.', cols: 'Steadily, Slowly', icon: '🧗' },
-    { word: 'Grow', type: 'Upward', def: 'To increase in size or amount over time.', example: 'The population continues to grow rapidly.', cols: 'Rapidly, Steadily', icon: '🌱' },
-    { word: 'Go up', type: 'Upward', def: 'To become higher in level.', example: 'The cost of materials went up again.', cols: 'Slightly, Sharply', icon: '⬆️' },
-    { word: 'Soar', type: 'Upward', def: 'To rise very quickly to a high level.', example: 'The cost of living continued to soar throughout 2022.', cols: 'Temperatures, Costs, Profits', icon: '🦅' },
-    { word: 'Rocket', type: 'Upward', def: 'To rise extremely quickly or make rapid progress.', example: 'Inflation rocketed in the last quarter.', cols: 'Prices, Demand', icon: '🚀' },
-    { word: 'Jump', type: 'Upward', def: 'To increase suddenly and by a large amount.', example: 'Sales jumped by 20% last month.', cols: 'Suddenly, Significantly', icon: '🦘' },
-    { word: 'Surge', type: 'Upward', def: 'A sudden and great increase.', example: 'There was a sudden surge in online shopping.', cols: 'Interest, Demand, Prices', icon: '🌊' },
-    { word: 'Leap', type: 'Upward', def: 'To make a large and sudden increase.', example: 'Profits leaped to a record high.', cols: 'Profits, Numbers', icon: '🏃‍♂️' },
-
+    { word: 'Rise', type: 'Upward', def: 'To move upwards or increase in amount.', example: 'Profits began to rise in the second quarter.', cols: 'Steadily, Sharply, Gradually', icon: ' 📈 ' },
+    { word: 'Increase', type: 'Upward', def: 'To become larger in amount or number.', example: 'There was an increase in tourism.', cols: 'Significantly, Gradually', icon: ' ➕ ' },
+    { word: 'Climb', type: 'Upward', def: 'To go up or increase, often steadily.', example: 'Interest rates climbed to 5%.', cols: 'Steadily, Slowly', icon: ' 🧗 ' },
+    { word: 'Grow', type: 'Upward', def: 'To increase in size or amount over time.', example: 'The population continues to grow rapidly.', cols: 'Rapidly, Steadily', icon: ' 🌱 ' },
+    { word: 'Go up', type: 'Upward', def: 'To become higher in level.', example: 'The cost of materials went up again.', cols: 'Slightly, Sharply', icon: ' ⬆️ ' },
+    { word: 'Soar', type: 'Upward', def: 'To rise very quickly to a high level.', example: 'The cost of living continued to soar throughout 2022.', cols: 'Temperatures, Costs, Profits', icon: ' 🦅 ' },
+    { word: 'Rocket', type: 'Upward', def: 'To rise extremely quickly or make rapid progress.', example: 'Inflation rocketed in the last quarter.', cols: 'Prices, Demand', icon: ' 🚀 ' },
+    { word: 'Jump', type: 'Upward', def: 'To increase suddenly and by a large amount.', example: 'Sales jumped by 20% last month.', cols: 'Suddenly, Significantly', icon: ' 🦘 ' },
+    { word: 'Surge', type: 'Upward', def: 'A sudden and great increase.', example: 'There was a sudden surge in online shopping.', cols: 'Interest, Demand, Prices', icon: ' 🌊 ' },
+    { word: 'Leap', type: 'Upward', def: 'To make a large and sudden increase.', example: 'Profits leaped to a record high.', cols: 'Profits, Numbers', icon: ' 🏃 ‍ ♂️ ' },
     // Downward Trends
-    { word: 'Fall', type: 'Downward', def: 'To go down to a lower level or amount.', example: 'The number of accidents fell sharply.', cols: 'Sharply, Steadily', icon: '📉' },
-    { word: 'Decrease', type: 'Downward', def: 'To become less, or to make something become less.', example: 'The unemployment rate decreased.', cols: 'Significantly, Slowly', icon: '➖' },
+    { word: 'Fall', type: 'Downward', def: 'To go down to a lower level or amount.', example: 'The number of accidents fell sharply.', cols: 'Sharply, Steadily', icon: ' 📉 ' },
+    { word: 'Decrease', type: 'Downward', def: 'To become less, or to make something become less.', example: 'The unemployment rate decreased.', cols: 'Significantly, Slowly', icon: ' ➖ ' },
     { word: 'Decline', type: 'Downward', def: 'To gradually become less, worse, or lower.', example: 'Manufacturing jobs declined in the 1990s.', cols: 'Gradually, Steadily', icon: '↘️' },
-    { word: 'Drop', type: 'Downward', def: 'To fall to a lower amount or value.', example: 'Temperatures dropped overnight.', cols: 'Suddenly, Slightly', icon: '💧' },
-    { word: 'Go down', type: 'Downward', def: 'To move to a lower level or point.', example: 'The percentage went down to 15%.', cols: 'Steadily, Gradually', icon: '⏬' },
-    { word: 'Plummet', type: 'Downward', def: 'To fall very quickly and suddenly from a high level.', example: 'Share prices plummeted after the scandal.', cols: 'Prices, Values', icon: '☄️' },
-    { word: 'Plunge', type: 'Downward', def: 'To go down suddenly and rapidly.', example: 'The temperature plunged below freezing.', cols: 'Markets, Rates', icon: '🤿' },
-    { word: 'Slump', type: 'Downward', def: 'To fall heavily and suddenly.', example: 'Sales slumped during the winter months.', cols: 'Sales, Profits', icon: '😞' },
-    { word: 'Sink', type: 'Downward', def: 'To go down or drop to a lower level.', example: 'The value of the currency sank.', cols: 'Values, Rates', icon: '⚓' },
-    { word: 'Dip', type: 'Downward', def: 'To go down to a lower level temporarily, before recovering.', example: 'Sales dipped slightly in the summer.', cols: 'Slightly, Briefly', icon: '🥄' },
-
+    { word: 'Drop', type: 'Downward', def: 'To fall to a lower amount or value.', example: 'Temperatures dropped overnight.', cols: 'Suddenly, Slightly', icon: ' 💧 ' },
+    { word: 'Go down', type: 'Downward', def: 'To move to a lower level or point.', example: 'The percentage went down to 15%.', cols: 'Steadily, Gradually', icon: ' ⏬ ' },
+    { word: 'Plummet', type: 'Downward', def: 'To fall very quickly and suddenly from a high level.', example: 'Share prices plummeted after the scandal.', cols: 'Prices, Values', icon: ' ☄️ ' },
+    { word: 'Plunge', type: 'Downward', def: 'To go down suddenly and rapidly.', example: 'The temperature plunged below freezing.', cols: 'Markets, Rates', icon: ' 🤿 ' },
+    { word: 'Slump', type: 'Downward', def: 'To fall heavily and suddenly.', example: 'Sales slumped during the winter months.', cols: 'Sales, Profits', icon: ' 😞 ' },
+    { word: 'Sink', type: 'Downward', def: 'To go down or drop to a lower level.', example: 'The value of the currency sank.', cols: 'Values, Rates', icon: ' ⚓ ' },
+    { word: 'Dip', type: 'Downward', def: 'To go down to a lower level temporarily, before recovering.', example: 'Sales dipped slightly in the summer.', cols: 'Slightly, Briefly', icon: ' 🥄 ' },
     // Extremes
-    { word: 'Peak', type: 'Extremes', def: 'To reach the highest point or value.', example: 'Sales peaked at $2M in December.', cols: 'At, Highest', icon: '🏔️' },
-    { word: 'Reach a high', type: 'Extremes', def: 'To attain the highest level.', example: 'The stock reached a high of $50.', cols: 'Record high, All-time', icon: '🔝' },
-    { word: 'Hit a low', type: 'Extremes', def: 'To reach the absolute lowest value.', example: 'The temperature hit a low of -5°C.', cols: 'Record low, All-time', icon: '🔽' },
-    { word: 'Bottom out', type: 'Extremes', def: 'To reach the lowest point and stop falling.', example: 'The recession finally bottomed out in 2009.', cols: 'Economy, Prices', icon: '🕳️' },
-
+    { word: 'Peak', type: 'Extremes', def: 'To reach the highest point or value.', example: 'Sales peaked at $2M in December.', cols: 'At, Highest', icon: ' 🏔️ ' },
+    { word: 'Reach a high', type: 'Extremes', def: 'To attain the highest level.', example: 'The stock reached a high of $50.', cols: 'Record high, All-time', icon: ' 🔝 ' },
+    { word: 'Hit a low', type: 'Extremes', def: 'To reach the absolute lowest value.', example: 'The temperature hit a low of -5°C.', cols: 'Record low, All-time', icon: ' 🔽 ' },
+    { word: 'Bottom out', type: 'Extremes', def: 'To reach the lowest point and stop falling.', example: 'The recession finally bottomed out in 2009.', cols: 'Economy, Prices', icon: ' 🕳️ ' },
     // Stability
-    { word: 'Remain stable', type: 'Stability', def: 'To stay the same without changing.', example: 'The figures remained stable for three years.', cols: 'Relatively, Completely', icon: '🧱' },
-    { word: 'Stay constant', type: 'Stability', def: 'To not change in amount or level.', example: 'The proportion stayed constant at 10%.', cols: 'Figures, Rates', icon: '⚖️' },
-    { word: 'Level off', type: 'Stability', def: 'To stop rising or falling and become steady.', example: 'After a sharp rise, prices levelled off.', cols: 'Prices, Rates', icon: '📏' },
-    { word: 'Plateau', type: 'Stability', def: 'To reach a state of little or no change.', example: 'Population growth plateaued after a decade.', cols: 'Sales, Growth', icon: '⛰️' },
-    { word: 'Remain the same', type: 'Stability', def: 'To show no difference over time.', example: 'The numbers remained the same throughout.', cols: 'Exactly, Broadly', icon: '🔄' },
-    { word: 'Hold steady', type: 'Stability', def: 'To stay firm and unchanging.', example: 'Interest rates held steady this month.', cols: 'Rates, Markets', icon: '🛑' },
-
+    { word: 'Remain stable', type: 'Stability', def: 'To stay the same without changing.', example: 'The figures remained stable for three years.', cols: 'Relatively, Completely', icon: ' 🧱 ' },
+    { word: 'Stay constant', type: 'Stability', def: 'To not change in amount or level.', example: 'The proportion stayed constant at 10%.', cols: 'Figures, Rates', icon: ' ⚖️ ' },
+    { word: 'Level off', type: 'Stability', def: 'To stop rising or falling and become steady.', example: 'After a sharp rise, prices levelled off.', cols: 'Prices, Rates', icon: ' 📏 ' },
+    { word: 'Plateau', type: 'Stability', def: 'To reach a state of little or no change.', example: 'Population growth plateaued after a decade.', cols: 'Sales, Growth', icon: ' ⛰️ ' },
+    { word: 'Remain the same', type: 'Stability', def: 'To show no difference over time.', example: 'The numbers remained the same throughout.', cols: 'Exactly, Broadly', icon: ' 🔄 ' },
+    { word: 'Hold steady', type: 'Stability', def: 'To stay firm and unchanging.', example: 'Interest rates held steady this month.', cols: 'Rates, Markets', icon: ' 🛑 ' },
     // Volatility
-    { word: 'Fluctuate', type: 'Volatility', def: 'To rise and fall irregularly in number or amount.', example: 'Temperatures fluctuated wildly during April.', cols: 'Wildly, Prices', icon: '〰️' },
-    { word: 'Oscillate', type: 'Volatility', def: 'To swing back and forth between two points.', example: 'The rate oscillated between 2% and 4%.', cols: 'Rates, Percentages', icon: '⏱️' },
-    { word: 'Vary', type: 'Volatility', def: 'To change or differ from something else.', example: 'The numbers varied significantly by region.', cols: 'Significantly, Widely', icon: '🔀' },
-
+    { word: 'Fluctuate', type: 'Volatility', def: 'To rise and fall irregularly in number or amount.', example: 'Temperatures fluctuated wildly during April.', cols: 'Wildly, Prices', icon: ' 〰️ ' },
+    { word: 'Oscillate', type: 'Volatility', def: 'To swing back and forth between two points.', example: 'The rate oscillated between 2% and 4%.', cols: 'Rates, Percentages', icon: ' ⏱️ ' },
+    { word: 'Vary', type: 'Volatility', def: 'To change or differ from something else.', example: 'The numbers varied significantly by region.', cols: 'Significantly, Widely', icon: ' 🔀 ' },
     // Speed & Degree (Adjectives)
-    { word: 'Dramatic', type: 'Adjectives', def: 'Very sudden or noticeable change.', example: 'There was a dramatic increase in sales.', cols: 'Increase, Fall, Rise', icon: '🎭' },
-    { word: 'Sharp', type: 'Adjectives', def: 'A sudden and rapid change.', example: 'A sharp drop in prices occurred.', cols: 'Drop, Decline, Rise', icon: '🔪' },
-    { word: 'Significant', type: 'Adjectives', def: 'Large or important enough to be noticed.', example: 'A significant decline was seen.', cols: 'Decline, Growth', icon: '❗' },
-    { word: 'Substantial', type: 'Adjectives', def: 'Large in amount or value.', example: 'There was a substantial rise in costs.', cols: 'Rise, Increase, Drop', icon: '📈' },
-    { word: 'Steadily', type: 'Adjectives', def: 'Happening in a smooth, gradual, and regular way.', example: 'A steady climb in numbers.', cols: 'Climb, Fall, Increase', icon: '🚶' },
-    { word: 'Gradual', type: 'Adjectives', def: 'Happening slowly over a period of time.', example: 'A gradual rise in temperature.', cols: 'Rise, Decrease', icon: '🐢' },
-    { word: 'Slight', type: 'Adjectives', def: 'Small in degree or amount.', example: 'There was a slight dip in the market.', cols: 'Dip, Increase, Drop', icon: '🤏' },
-
+    { word: 'Dramatic', type: 'Adjectives', def: 'Very sudden or noticeable change.', example: 'There was a dramatic increase in sales.', cols: 'Increase, Fall, Rise', icon: ' 🎭 ' },
+    { word: 'Sharp', type: 'Adjectives', def: 'A sudden and rapid change.', example: 'A sharp drop in prices occurred.', cols: 'Drop, Decline, Rise', icon: ' 🔪 ' },
+    { word: 'Significant', type: 'Adjectives', def: 'Large or important enough to be noticed.', example: 'A significant decline was seen.', cols: 'Decline, Growth', icon: ' ❗ ' },
+    { word: 'Substantial', type: 'Adjectives', def: 'Large in amount or value.', example: 'There was a substantial rise in costs.', cols: 'Rise, Increase, Drop', icon: ' 📈 ' },
+    { word: 'Steadily', type: 'Adjectives', def: 'Happening in a smooth, gradual, and regular way.', example: 'A steady climb in numbers.', cols: 'Climb, Fall, Increase', icon: ' 🚶 ' },
+    { word: 'Gradual', type: 'Adjectives', def: 'Happening slowly over a period of time.', example: 'A gradual rise in temperature.', cols: 'Rise, Decrease', icon: ' 🐢 ' },
+    { word: 'Slight', type: 'Adjectives', def: 'Small in degree or amount.', example: 'There was a slight dip in the market.', cols: 'Dip, Increase, Drop', icon: ' 🤏 ' },
     // Speed & Degree (Adverbs)
-    { word: 'Dramatically', type: 'Adverbs', def: 'In a very sudden or noticeable way.', example: 'Sales increased dramatically in Q4.', cols: 'Increase, Fall, Rise', icon: '💥' },
-    { word: 'Sharply', type: 'Adverbs', def: 'Quickly and suddenly.', example: 'Prices fell sharply.', cols: 'Fall, Rise, Drop', icon: '⚡' },
-    { word: 'Significantly', type: 'Adverbs', def: 'In a large or important way.', example: 'Profits grew significantly.', cols: 'Grow, Decrease', icon: '📊' },
-    { word: 'Steadily', type: 'Adverbs', def: 'Gradually and in an even and regular way.', example: 'The number of visitors rose steadily.', cols: 'Rise, Climb', icon: '⏳' },
-    { word: 'Gradually', type: 'Adverbs', def: 'Slowly over a period of time.', example: 'The population increased gradually.', cols: 'Increase, Decline', icon: '🗓️' },
-    { word: 'Slightly', type: 'Adverbs', def: 'A little.', example: 'Temperatures dropped slightly.', cols: 'Drop, Fall, Increase', icon: '📉' }
+    { word: 'Dramatically', type: 'Adverbs', def: 'In a very sudden or noticeable way.', example: 'Sales increased dramatically in Q4.', cols: 'Increase, Fall, Rise', icon: ' 💥 ' },
+    { word: 'Sharply', type: 'Adverbs', def: 'Quickly and suddenly.', example: 'Prices fell sharply.', cols: 'Fall, Rise, Drop', icon: ' ⚡ ' },
+    { word: 'Significantly', type: 'Adverbs', def: 'In a large or important way.', example: 'Profits grew significantly.', cols: 'Grow, Decrease', icon: ' 📊 ' },
+    { word: 'Steadily', type: 'Adverbs', def: 'Gradually and in an even and regular way.', example: 'The number of visitors rose steadily.', cols: 'Rise, Climb', icon: ' ⏳ ' },
+    { word: 'Gradually', type: 'Adverbs', def: 'Slowly over a period of time.', example: 'The population increased gradually.', cols: 'Increase, Decline', icon: ' 🗓️ ' },
+    { word: 'Slightly', type: 'Adverbs', def: 'A little.', example: 'Temperatures dropped slightly.', cols: 'Drop, Fall, Increase', icon: ' 📉 ' }
   ],
   trendQuiz: [
     { q: "If prices fall very quickly and suddenly, they have...", options: ["Plummeted", "Plateaued", "Fluctuated"], answer: "Plummeted" },
@@ -287,10 +281,10 @@ const dataHub = {
     { q: "If sales fall, but then return to their original high position, they...", options: ["Collapsed", "Stagnated", "Bounced back"], answer: "Bounced back" }
   ],
   languageOfChange: [
-    { title: 'The Skyrocket', icon: '🚀', words: 'surged, soared, shot up, skyrocketed', example: '"The number of unread emails skyrocketed after the weekend."', colors: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-800' }, chartType: 'line', chartData: { labels: ['Fri','Mon'], datasets: [{ data: [5, 450], borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16,185,129,0.1)', tension: 0.2 }] } },
-    { title: 'The Abyss', icon: '🕳️', words: 'plummeted, plunged, collapsed, sank', example: '"My bank balance plunged dramatically after payday."', colors: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-800' }, chartType: 'line', chartData: { labels: ['Payday','Day 2'], datasets: [{ data: [2000, 12], borderColor: '#f43f5e', fill: true, backgroundColor: 'rgba(244,63,94,0.1)', tension: 0.2 }] } },
-    { title: 'The Plateau of Boredom', icon: '➡️', words: 'remained steady, flatlined, stagnated', example: '"My career progression flatlined at middle management."', colors: { bg: 'bg-slate-100', border: 'border-slate-300', text: 'text-slate-800' }, chartType: 'line', chartData: { labels: ['2015','2017', '2019', '2021', '2023'], datasets: [{ data: [50, 50, 50, 50, 50], borderColor: '#64748b', fill: true, backgroundColor: 'rgba(100,116,139,0.1)', tension: 0 }] } },
-    { title: 'The Rollercoaster', icon: '🎢', words: 'fluctuated wildly, was highly erratic', example: '"My stability fluctuated wildly during the exam."', colors: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-800' }, chartType: 'line', chartData: { labels: ['Q1','Q2','Q3','Q4'], datasets: [{ data: [90, 10, 85, 5], borderColor: '#f59e0b', fill: true, backgroundColor: 'rgba(245,158,11,0.1)', tension: 0.3 }] } }
+    { title: 'The Skyrocket', icon: ' 🚀 ', words: 'surged, soared, shot up, skyrocketed', example: '"The number of unread emails skyrocketed after the weekend."', colors: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-800' }, chartType: 'line', chartData: { labels: ['Fri','Mon'], datasets: [{ data: [5, 450], borderColor: '#10b981', fill: true, backgroundColor: 'rgba(16,185,129,0.1)', tension: 0.2 }] } },
+    { title: 'The Abyss', icon: ' 🕳️ ', words: 'plummeted, plunged, collapsed, sank', example: '"My bank balance plunged dramatically after payday."', colors: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-800' }, chartType: 'line', chartData: { labels: ['Payday','Day 2'], datasets: [{ data: [2000, 12], borderColor: '#f43f5e', fill: true, backgroundColor: 'rgba(244,63,94,0.1)', tension: 0.2 }] } },
+    { title: 'The Plateau of Boredom', icon: ' ➡️ ', words: 'remained steady, flatlined, stagnated', example: '"My career progression flatlined at middle management."', colors: { bg: 'bg-slate-100', border: 'border-slate-300', text: 'text-slate-800' }, chartType: 'line', chartData: { labels: ['2015','2017', '2019', '2021', '2023'], datasets: [{ data: [50, 50, 50, 50, 50], borderColor: '#64748b', fill: true, backgroundColor: 'rgba(100,116,139,0.1)', tension: 0 }] } },
+    { title: 'The Rollercoaster', icon: ' 🎢 ', words: 'fluctuated wildly, was highly erratic', example: '"My stability fluctuated wildly during the exam."', colors: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-800' }, chartType: 'line', chartData: { labels: ['Q1','Q2','Q3','Q4'], datasets: [{ data: [90, 10, 85, 5], borderColor: '#f59e0b', fill: true, backgroundColor: 'rgba(245,158,11,0.1)', tension: 0.3 }] } }
   ],
   trendSentences: [
     { text: "Coffee sales soared dramatically from 10 to 90 cups.", data: [10, 20, 40, 90] },
@@ -403,7 +397,7 @@ const dataHub = {
       id: 'process', title: 'Decoding Processes', subtitle: 'Step-by-step without losing your mind.', 
       content: 'A process diagram requires sequence and passivity. You MUST use the passive voice (e.g., "The clay is heated", not "They heat the clay"). Group the steps logically into two paragraphs (e.g., Preparation vs Manufacturing). Use rich linking words: Initially, subsequently, following this, culminating in.', 
       guidingQuestion: "Look at the brick manufacturing process above. Write one complex sentence using the passive voice that connects the 'Drying Oven' stage to the 'Kiln' stage.",
-      visual: { type: 'process', data: { title: 'Brick Production', steps: [{ label: 'Drying Oven (48h)', icon: '♨️' }, { label: 'Kiln (1300°C)', icon: '🔥' }, { label: 'Cooling Chamber', icon: '❄️' }, { label: 'Packaging', icon: '📦' }] } } 
+      visual: { type: 'process', data: { title: 'Brick Production', steps: [{ label: 'Drying Oven (48h)', icon: ' ♨️ ' }, { label: 'Kiln (1300°C)', icon: ' 🔥 ' }, { label: 'Cooling Chamber', icon: ' ❄️ ' }, { label: 'Packaging', icon: ' 📦 ' }] } } 
     },
     { 
       id: 'map', title: 'Mapping the Changes', subtitle: 'North, South, Demolished, Constructed.', 
@@ -412,19 +406,19 @@ const dataHub = {
       visual: { type: 'map', data: { 
         title1: 'Town 1990', 
         features1: [
-          { label: 'Forest', icon: '🌲', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }, 
-          { label: 'Old Farm', icon: '🐄', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-400' }, 
-          { label: 'Post Office', icon: '✉️', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-slate-400' },
-          { label: 'Wooden Bridge', icon: '🌉', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-amber-800' },
-          { label: 'Dirt Road', icon: '🛤️', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-amber-700' }
+          { label: 'Forest', icon: ' 🌲 ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }, 
+          { label: 'Old Farm', icon: ' 🐄 ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-400' }, 
+          { label: 'Post Office', icon: ' ✉️ ', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-slate-400' },
+          { label: 'Wooden Bridge', icon: ' 🌉 ', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-amber-800' },
+          { label: 'Dirt Road', icon: ' 🛤️ ', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-amber-700' }
         ], 
         title2: 'Town 2024', 
         features2: [
-          { label: 'University', icon: '🎓', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-500' }, 
-          { label: 'Luxury Apts', icon: '🏢', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, 
-          { label: 'Shopping Mall', icon: '🏬', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-indigo-400' },
-          { label: 'Concrete Bridge', icon: '🌉', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-slate-500' },
-          { label: 'Dual Carriageway', icon: '🛣️', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-slate-800' }
+          { label: 'University', icon: ' 🎓 ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-500' }, 
+          { label: 'Luxury Apts', icon: ' 🏢 ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, 
+          { label: 'Shopping Mall', icon: ' 🏬 ', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-indigo-400' },
+          { label: 'Concrete Bridge', icon: ' 🌉 ', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-slate-500' },
+          { label: 'Dual Carriageway', icon: ' 🛣️ ', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-slate-800' }
         ] 
       } } 
     },
@@ -440,27 +434,21 @@ const dataHub = {
     // --- LINE GRAPHS (2) ---
     { id: "line-001", type: "Line Graph", topic: "CO2 Emissions by Sector", description: "The line graph below shows the amount of carbon dioxide emissions produced by three different sectors in the UK between 2000 and 2020.", key_data: "Transport sector emissions increased steadily. Industrial emissions declined sharply. Residential emissions fluctuated but remained largely stable.", visuals: [{ type: 'line', data: { labels: ['2000', '2005', '2010', '2015', '2020'], datasets: [ { label: 'Transport (million tonnes)', data: [110, 125, 130, 140, 145], borderColor: '#ef4444', tension: 0.2 }, { label: 'Industry', data: [160, 130, 100, 80, 70], borderColor: '#3b82f6', tension: 0.2 }, { label: 'Residential', data: [80, 85, 75, 82, 80], borderColor: '#10b981', tension: 0.2 } ] } }] },
     { id: "line-002", type: "Line Graph", topic: "International Student Enrollments", description: "The graph illustrates the number of international students enrolled in universities across four English-speaking countries from 1990 to 2020.", key_data: "USA remained the highest throughout but plateaued after 2010. Australia and the UK saw exponential growth.", visuals: [{ type: 'line', data: { labels: ['1990', '2000', '2010', '2020'], datasets: [ { label: 'USA', data: [400, 500, 600, 620], borderColor: '#3b82f6', tension: 0.3 }, { label: 'UK', data: [150, 200, 300, 450], borderColor: '#ef4444', tension: 0.3 }, { label: 'Australia', data: [50, 100, 250, 400], borderColor: '#f59e0b', tension: 0.3 }, { label: 'Canada', data: [80, 120, 150, 200], borderColor: '#10b981', tension: 0.3 } ] } }] },
-    
     // --- BAR CHARTS (2) ---
     { id: "bar-001", type: "Bar Chart", topic: "Primary Energy Consumption", description: "The bar chart compares primary energy consumption in the USA and China by fuel type in the year 2015.", key_data: "China consumed significantly more coal than the USA, whereas the USA relied more heavily on oil and nuclear power.", visuals: [{ type: 'bar', data: { labels: ['Coal', 'Oil', 'Natural Gas', 'Nuclear', 'Renewables'], datasets: [ { label: 'USA (Exajoules)', data: [15, 35, 25, 8, 5], backgroundColor: '#3b82f6' }, { label: 'China (Exajoules)', data: [80, 20, 5, 2, 8], backgroundColor: '#ef4444' } ] } }] },
     { id: "bar-002", type: "Bar Chart", topic: "Reasons for Adult Education", description: "The bar chart shows the reasons why adults of different age groups decide to return to education.", key_data: "Younger adults study primarily for career advancement, while those over 50 study primarily out of personal interest.", visuals: [{ type: 'bar', data: { labels: ['Under 26', '26-39', '40-49', 'Over 50'], datasets: [ { label: 'Career Development (%)', data: [80, 65, 40, 15], backgroundColor: '#8b5cf6' }, { label: 'Personal Interest (%)', data: [10, 20, 45, 75], backgroundColor: '#10b981' } ] } }] },
-    
     // --- PIE CHARTS (2) ---
     { id: "pie-001", type: "Pie Chart", topic: "Global Water Usage", description: "The pie charts compare the proportion of water used for agricultural, industrial, and domestic purposes globally and in Europe.", key_data: "Globally, agriculture accounts for the vast majority (69%) of water use. Conversely, in Europe, industrial use dominates at 53%.", visuals: [{ type: 'doughnut', data: { labels: ['Agriculture', 'Industrial', 'Domestic'], datasets: [{ label: 'Global', data: [69, 23, 8], backgroundColor: ['#10b981', '#3b82f6', '#f59e0b'] }, { label: 'Europe', data: [32, 53, 15], backgroundColor: ['#10b981', '#3b82f6', '#f59e0b'] }] } }] },
     { id: "pie-002", type: "Pie Chart", topic: "Causes of Land Degradation", description: "The pie chart details the primary causes of agricultural land degradation worldwide in the 1990s.", key_data: "Over-grazing (35%) and deforestation (30%) were the primary culprits, together accounting for nearly two-thirds of total degradation.", visuals: [{ type: 'pie', data: { labels: ['Over-grazing', 'Deforestation', 'Over-cultivation', 'Other'], datasets: [{ data: [35, 30, 28, 7], backgroundColor: ['#ef4444', '#f59e0b', '#8b5cf6', '#94a3b8'] }] } }] },
-
     // --- TABLES (2) ---
     { id: "table-001", type: "Table", topic: "Consumer Spending in Europe", description: "The table shows the percentage of national consumer expenditure on three different categories in five European countries in 2002.", key_data: "Food/Tobacco was the highest expenditure across all nations, notably in Turkey (32%). Leisure/Education was consistently the lowest.", visuals: [{ type: 'table', data: { headers: ['Country', 'Food/Drinks/Tobacco', 'Clothing/Footwear', 'Leisure/Education'], rows: [['Ireland', '28.9%', '6.4%', '2.2%'], ['Italy', '16.3%', '9.0%', '3.2%'], ['Spain', '16.3%', '6.5%', '4.3%'], ['Sweden', '15.7%', '5.4%', '3.2%'], ['Turkey', '32.1%', '6.6%', '4.3%']] } }] },
     { id: "table-002", type: "Table", topic: "Underground Railway Systems", description: "The table provides data on the underground railway networks in six major global cities.", key_data: "London has the oldest and longest system (394km). However, Tokyo handles the highest volume of passengers annually (1927 million).", visuals: [{ type: 'table', data: { headers: ['City', 'Date Opened', 'Kilometres of Route', 'Passengers/Year (Millions)'], rows: [['London', '1863', '394', '775'], ['Paris', '1900', '199', '1191'], ['Tokyo', '1927', '155', '1927'], ['Washington DC', '1976', '126', '144'], ['Kyoto', '1981', '11', '45'], ['Los Angeles', '2001', '28', '50']] } }] },
-
     // --- PROCESS DIAGRAMS (2) ---
-    { id: "process-001", type: "Process", topic: "Cement Manufacturing", description: "The diagram illustrates the process of manufacturing cement in an industrial facility.", key_data: "There are roughly 5 main stages, starting with crushing limestone/clay, mixing, heating in a rotating heater, grinding, and finally packaging.", visuals: [{ type: 'process', data: { title: "Cement Production Flow", steps: [{ label: 'Crusher', icon: '🏗️' }, { label: 'Mixer', icon: '🔄' }, { label: 'Rotating Heater', icon: '🔥' }, { label: 'Grinder', icon: '⚙️' }, { label: 'Packaging', icon: '📦' }] } }] },
-    { id: "process-002", type: "Process", topic: "Hydroelectric Power Generation", description: "The diagram shows how electricity is generated in a hydroelectric power station.", key_data: "Water flows from a high reservoir through an intake valve, spins a turbine, which powers a generator, before electricity is sent via power lines.", visuals: [{ type: 'process', data: { title: "Hydroelectric Dam Operation", steps: [{ label: 'Reservoir', icon: '🌊' }, { label: 'Intake Valve', icon: '🎛️' }, { label: 'Turbine', icon: '⚙️' }, { label: 'Generator', icon: '⚡' }, { label: 'Power Lines', icon: '🗼' }] } }] },
-
+    { id: "process-001", type: "Process", topic: "Cement Manufacturing", description: "The diagram illustrates the process of manufacturing cement in an industrial facility.", key_data: "There are roughly 5 main stages, starting with crushing limestone/clay, mixing, heating in a rotating heater, grinding, and finally packaging.", visuals: [{ type: 'process', data: { title: "Cement Production Flow", steps: [{ label: 'Crusher', icon: ' 🏗️ ' }, { label: 'Mixer', icon: ' 🔄 ' }, { label: 'Rotating Heater', icon: ' 🔥 ' }, { label: 'Grinder', icon: ' ⚙️ ' }, { label: 'Packaging', icon: ' 📦 ' }] } }] },
+    { id: "process-002", type: "Process", topic: "Hydroelectric Power Generation", description: "The diagram shows how electricity is generated in a hydroelectric power station.", key_data: "Water flows from a high reservoir through an intake valve, spins a turbine, which powers a generator, before electricity is sent via power lines.", visuals: [{ type: 'process', data: { title: "Hydroelectric Dam Operation", steps: [{ label: 'Reservoir', icon: ' 🌊 ' }, { label: 'Intake Valve', icon: ' 🎛️ ' }, { label: 'Turbine', icon: ' ⚙️ ' }, { label: 'Generator', icon: ' ⚡ ' }, { label: 'Power Lines', icon: ' 🗼 ' }] } }] },
     // --- MAPS & PLANS (2) ---
-    { id: "map-001", type: "Map", topic: "Island Tourist Resort", description: "The two maps show a small island before and after the construction of tourist facilities.", key_data: "A previously undeveloped island saw the construction of a hotel, restaurant, and pier. Trees were retained, but a beach area was developed for swimming.", visuals: [{ type: 'map', data: { title1: 'Before Development', features1: [{ label: 'Beach', icon: '🏖️', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-200' }, { label: 'Trees', icon: '🌴', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }], title2: 'After Development', features2: [{ label: 'Hotel', icon: '🏨', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, { label: 'Restaurant', icon: '🍽️', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-400' }, { label: 'Pier', icon: '⛵', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-slate-400' }] } }] },
-    { id: "map-002", type: "Map", topic: "Hospital Parking Redevelopment", description: "The maps illustrate changes to the road access and parking facilities around a city hospital from 2007 to 2010.", key_data: "The staff car park and public parking were separated. Two new roundabouts and a new bus station were constructed to improve traffic flow.", visuals: [{ type: 'map', data: { title1: 'Hospital 2007', features1: [{ label: 'Mixed Parking', icon: '🚗', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-slate-400' }, { label: 'Bus Stops', icon: '🚏', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-amber-400' }], title2: 'Hospital 2010', features2: [{ label: 'Staff Parking', icon: '🅿️', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, { label: 'Public Parking', icon: '🚗', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-400' }, { label: 'Roundabouts', icon: '🔄', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-emerald-400' }] } }] },
-
+    { id: "map-001", type: "Map", topic: "Island Tourist Resort", description: "The two maps show a small island before and after the construction of tourist facilities.", key_data: "A previously undeveloped island saw the construction of a hotel, restaurant, and pier. Trees were retained, but a beach area was developed for swimming.", visuals: [{ type: 'map', data: { title1: 'Before Development', features1: [{ label: 'Beach', icon: ' 🏖️ ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-200' }, { label: 'Trees', icon: ' 🌴 ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }], title2: 'After Development', features2: [{ label: 'Hotel', icon: ' 🏨 ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, { label: 'Restaurant', icon: ' 🍽️ ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-400' }, { label: 'Pier', icon: ' ⛵ ', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-slate-400' }] } }] },
+    { id: "map-002", type: "Map", topic: "Hospital Parking Redevelopment", description: "The maps illustrate changes to the road access and parking facilities around a city hospital from 2007 to 2010.", key_data: "The staff car park and public parking were separated. Two new roundabouts and a new bus station were constructed to improve traffic flow.", visuals: [{ type: 'map', data: { title1: 'Hospital 2007', features1: [{ label: 'Mixed Parking', icon: ' 🚗 ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-slate-400' }, { label: 'Bus Stops', icon: ' 🚏 ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-amber-400' }], title2: 'Hospital 2010', features2: [{ label: 'Staff Parking', icon: ' 🅿️ ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, { label: 'Public Parking', icon: ' 🚗 ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-400' }, { label: 'Roundabouts', icon: ' 🔄 ', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-emerald-400' }] } }] },
     // --- MULTIPLE CHARTS (4) ---
     { id: "multi-001", type: "Multiple", topic: "Transport & Commuting", description: "The line graph shows car ownership in the UK from 1971 to 2007, while the bar chart compares the main methods of commuting to work in 2007.", key_data: "Car ownership grew steadily, with households owning 2 or more cars rising sharply. Consequently, in 2007, the car was the dominant commuting method.", visuals: [
         { type: 'line', data: { labels: ['1971', '1981', '1991', '2001', '2007'], datasets: [ { label: 'No car', data: [45, 38, 32, 28, 25], borderColor: '#94a3b8', tension: 0.2 }, { label: 'One car', data: [42, 45, 43, 44, 43], borderColor: '#3b82f6', tension: 0.2 }, { label: 'Two or more cars', data: [13, 17, 25, 28, 32], borderColor: '#ef4444', tension: 0.2 } ] } },
@@ -726,7 +714,6 @@ export default function App() {
                       <div className="bg-white/50 backdrop-blur-md p-3 rounded-2xl mb-5 border border-white/60 shadow-inner flex-shrink-0 w-full overflow-hidden">
                         <VisualRenderer visual={item.visual} height="130px" options={{ animation: false }} />
                       </div>
-
                       <div className="flex flex-col flex-grow mt-auto space-y-4">
                          <div className="bg-white/40 backdrop-blur-sm p-3 rounded-xl border border-white/60 shadow-sm">
                            <h4 className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-1 flex items-center drop-shadow-sm">
@@ -760,7 +747,6 @@ export default function App() {
                     Deviating from this structure is a fantastic way to secure a Band 5. Memorize this format. Let's apply it to a highly relevant academic topic: <strong className="text-indigo-600">"Average daily hours spent WFH (Working From Home)"</strong>.
                   </p>
                 </div>
-
                 <LiquidCard className="mb-8 p-6 md:p-8">
                   <div className="bg-white/50 backdrop-blur-md rounded-2xl p-4 border border-white/60 shadow-inner">
                     <ChartCanvas type={dataHub.structureGuide.chart.type} data={dataHub.structureGuide.chart.data} height="200px" options={{ indexAxis: 'y', plugins: { legend: { display: false } } }} />
@@ -841,7 +827,6 @@ export default function App() {
                     </LiquidCard>
                   ))}
                 </div>
-
                 <div className="pt-8 border-t border-slate-300/50">
                    <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center">
                       <Activity className="mr-2 text-indigo-600" /> The 15 Sentences of Chaos (Mini-Drill)
@@ -954,7 +939,6 @@ export default function App() {
                         </LiquidCard>
                       )}
                    </div>
-
                    {/* Trends Vocabulary Quiz */}
                    <LiquidCard className="mt-8">
                      <h3 className="text-2xl font-bold text-indigo-900 mb-4 flex items-center drop-shadow-sm">
@@ -992,7 +976,7 @@ export default function App() {
                        {trendQuizScore !== null && (
                          <div className={`text-xl font-bold drop-shadow-sm ${trendQuizScore === dataHub.trendQuiz.length ? 'text-emerald-700' : 'text-rose-700'}`}>
                            You scored {trendQuizScore} / {dataHub.trendQuiz.length}
-                           {trendQuizScore === dataHub.trendQuiz.length ? ' 🎉 Perfect!' : ' 😬 Review the vocabulary above.'}
+                           {trendQuizScore === dataHub.trendQuiz.length ? '  🎉  Perfect!' : '  😬  Review the vocabulary above.'}
                          </div>
                        )}
                      </div>
@@ -1035,7 +1019,6 @@ export default function App() {
                     </div>
                   </LiquidCard>
                 </div>
-
                 <h3 className="text-2xl font-bold text-slate-800 mt-12 mb-6 drop-shadow-sm">Quick Reference Examples</h3>
                 <div className="grid lg:grid-cols-2 gap-6 mb-12">
                   {dataHub.paraphrasing.map((item, qIdx) => (
@@ -1137,7 +1120,6 @@ export default function App() {
                       "{dataHub.paraphrasePractice[practicePromptIndex].text}"
                     </p>
                   </div>
-
                   <textarea
                     className="w-full p-6 rounded-2xl border border-white/80 focus:ring-2 focus:ring-indigo-500 outline-none mb-6 font-lora text-lg bg-white/70 backdrop-blur-md shadow-inner resize-none relative z-20 placeholder:text-slate-400 font-medium text-slate-800"
                     rows="3"
@@ -1145,7 +1127,6 @@ export default function App() {
                     value={practiceParaphraseInput}
                     onChange={(e) => setPracticeParaphraseInput(e.target.value)}
                   />
-
                   <div className="relative z-20">
                     <button 
                       onClick={handlePracticeSubmit}
@@ -1156,7 +1137,6 @@ export default function App() {
                       Submit Paraphrase
                     </button>
                   </div>
-
                   {practiceFeedback && (
                     <div className="mt-8 p-6 bg-white/80 backdrop-blur-md border border-white shadow-xl rounded-2xl prose prose-indigo max-w-none animate-fade-in relative z-20">
                       <h4 className="font-bold text-xl m-0 flex items-center mb-4 text-slate-900 border-b border-slate-200 pb-3">
@@ -1166,7 +1146,6 @@ export default function App() {
                     </div>
                   )}
                 </LiquidCard>
-
               </section>
             )}
 
@@ -1438,7 +1417,7 @@ export default function App() {
 
                         <div className="p-5 bg-white/60 border-t border-white/70 flex flex-col sm:flex-row justify-between items-center gap-4 mt-auto shadow-sm">
                           <div className="flex items-center space-x-4 w-full sm:w-auto">
-                            <div className={`flex items-center px-4 py-2.5 rounded-xl border-2 font-bold transition-colors shadow-sm ${wordCount < 150 ? 'bg-rose-100 text-rose-800 border-rose-300' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
+                            <div className={`flex items-center px-4 py-2.5 rounded-xl border-2 font-bold transition-colors shadow-sm ${wordCount < 150 ? 'bg-rose-100 text-rose-700 border-rose-300' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
                               Words: {wordCount}
                             </div>
                             <span className="text-sm font-bold text-indigo-700 transition-opacity drop-shadow-sm">{saveStatus}</span>
@@ -1481,7 +1460,6 @@ export default function App() {
                 )}
               </section>
             )}
-)}
 
           </div>
 
@@ -1493,12 +1471,6 @@ export default function App() {
             </span>
           </footer>
 
-        </div>
-      </div>
-    </div>
-  );
-}
-          </div>
         </div>
       </div>
     </div>
