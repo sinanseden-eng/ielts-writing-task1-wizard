@@ -4,7 +4,7 @@ import {
   AlertCircle, Activity, PieChart, Map as MapIcon, 
   GitMerge, Lightbulb, FileSpreadsheet, ArrowRight,
   ChevronLeft, Zap, Search, Edit3, MessageSquare,
-  TrendingUp, BookOpen, Repeat
+  TrendingUp, BookOpen, Repeat, Mail
 } from 'lucide-react';
 
 // ============================================================================
@@ -676,6 +676,21 @@ export default function App() {
       promptDetails: `${activeTask.type}: ${activeTask.topic}. Prompt: ${activeTask.description}. Target Key Data: ${activeTask.key_data}`
     });
     setFeedback(result); setIsEvaluating(false);
+  };
+
+  const handleEmailFeedback = () => {
+    const subject = encodeURIComponent(`IELTS Task 1 Evaluation: ${activeTask.topic}`);
+    const body = encodeURIComponent(
+      `Hello,\n\nHere is my IELTS Writing Task 1 submission and the detailed AI feedback for your review.\n\n` +
+      `================================\n` +
+      `PROMPT: ${activeTask.topic}\n` +
+      `================================\n\n` +
+      `--- MY ESSAY ---\n` +
+      `${essay}\n\n` +
+      `--- AI EXAMINER FEEDBACK ---\n` +
+      `${feedback}`
+    );
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -1555,6 +1570,15 @@ export default function App() {
                     </div>
                     <div className="p-8 md:p-10 text-slate-200 leading-relaxed font-inter font-medium text-lg">
                       <div className="whitespace-pre-wrap">{feedback}</div>
+                    </div>
+                    <div className="bg-slate-800/50 p-6 border-t border-slate-700 flex justify-end">
+                      <button 
+                        onClick={handleEmailFeedback}
+                        className="flex items-center px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-colors shadow-lg border border-indigo-400"
+                      >
+                        <Mail className="w-5 h-5 mr-2" />
+                        Email Feedback to Teacher
+                      </button>
                     </div>
                   </div>
                 )}
