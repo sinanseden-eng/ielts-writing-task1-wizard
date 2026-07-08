@@ -4,7 +4,7 @@ import {
   AlertCircle, Activity, PieChart, Map as MapIcon, 
   GitMerge, Lightbulb, FileSpreadsheet, ArrowRight,
   ChevronLeft, Zap, Search, Edit3, MessageSquare,
-  TrendingUp, BookOpen, Repeat, Mail
+  TrendingUp, BookOpen, Repeat, Copy
 } from 'lucide-react';
 
 // ============================================================================
@@ -653,6 +653,7 @@ export default function App() {
   const [feedback, setFeedback] = useState(null);
   const [isEvaluating, setIsEvaluating] = useState(false);
   const [saveStatus, setSaveStatus] = useState('');
+  const [copySuccess, setCopySuccess] = useState(false);
   const activeTask = dataHub.practiceTasks[selectedTaskIndex];
 
   useEffect(() => {
@@ -678,19 +679,28 @@ export default function App() {
     setFeedback(result); setIsEvaluating(false);
   };
 
-  const handleEmailFeedback = () => {
-    const subject = encodeURIComponent(`IELTS Task 1 Evaluation: ${activeTask.topic}`);
-    const body = encodeURIComponent(
-      `Hello,\n\nHere is my IELTS Writing Task 1 submission and the detailed AI feedback for your review.\n\n` +
-      `================================\n` +
-      `PROMPT: ${activeTask.topic}\n` +
+  const handleCopyFeedback = () => {
+    const contentToCopy = `================================\n` +
+      `IELTS TASK 1 PROMPT:\n` +
+      `${activeTask.topic}\n` +
       `================================\n\n` +
       `--- MY ESSAY ---\n` +
       `${essay}\n\n` +
       `--- AI EXAMINER FEEDBACK ---\n` +
-      `${feedback}`
-    );
-    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+      `${feedback}`;
+
+    const textArea = document.createElement("textarea");
+    textArea.value = contentToCopy;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 3000);
+    } catch (err) {
+      console.error('Copy failed', err);
+    }
+    document.body.removeChild(textArea);
   };
 
   return (
@@ -1571,13 +1581,16 @@ export default function App() {
                     <div className="p-8 md:p-10 text-slate-200 leading-relaxed font-inter font-medium text-lg">
                       <div className="whitespace-pre-wrap">{feedback}</div>
                     </div>
-                    <div className="bg-slate-800/50 p-6 border-t border-slate-700 flex justify-end">
+                    <div className="bg-slate-800/50 p-6 border-t border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+                      <p className="text-slate-400 text-sm italic">
+                        * Optional: You can copy your essay and feedback to share with your teacher.
+                      </p>
                       <button 
-                        onClick={handleEmailFeedback}
-                        className="flex items-center px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-colors shadow-lg border border-indigo-400"
+                        onClick={handleCopyFeedback}
+                        className="flex items-center px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-colors shadow-lg border border-indigo-400 shrink-0"
                       >
-                        <Mail className="w-5 h-5 mr-2" />
-                        Email Feedback to Teacher
+                        {copySuccess ? <CheckCircle className="w-5 h-5 mr-2 text-emerald-300" /> : <Copy className="w-5 h-5 mr-2" />}
+                        {copySuccess ? 'Copied to Clipboard!' : 'Copy Essay & Feedback'}
                       </button>
                     </div>
                   </div>
