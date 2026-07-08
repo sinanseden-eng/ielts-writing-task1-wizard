@@ -11,16 +11,20 @@ import {
 // 0. LIQUID GLASS UNIVERSAL CARD COMPONENT
 // ============================================================================
 
-const LiquidCard = ({ children, className = "", style = {}, onClick }) => (
+const LiquidCard = ({ children, className = "", style = {}, onClick, topBarColor }) => (
   <div 
     onClick={onClick}
-    className={`relative rounded-[2rem] p-6 flex flex-col transition-all duration-300 shadow-xl border border-white/70 ${onClick ? 'cursor-pointer hover:scale-[1.02] hover:shadow-2xl' : ''} ${className}`}
+    className={`relative rounded-[2rem] p-6 flex flex-col transition-all duration-300 shadow-xl border border-white/70 overflow-hidden ${onClick ? 'cursor-pointer hover:scale-[1.02] hover:shadow-2xl' : ''} ${className}`}
     style={{
       background: 'linear-gradient(180deg, rgba(230, 245, 255, 0.75) 0%, rgba(200, 230, 255, 0.5) 45%, rgba(150, 210, 255, 0.8) 100%)',
       boxShadow: '0 12px 30px rgba(0, 70, 150, 0.2), inset 0 4px 10px rgba(255, 255, 255, 0.95), inset 0 -8px 16px rgba(50, 150, 255, 0.5), inset 0 0 5px rgba(255,255,255,0.6)',
       backdropFilter: 'blur(10px)',
       ...style
     }}>
+    {/* Colored Top Bar - Clipped cleanly by overflow-hidden */}
+    {topBarColor && (
+      <div className={`absolute top-0 left-0 w-full h-3.5 ${topBarColor} z-20 rounded-t-[1.9rem]`} />
+    )}
     {/* Top Glossy Droplet Highlight */}
     <div className="absolute top-0 left-[5%] w-[90%] h-[45%] pointer-events-none rounded-b-[100px] z-0"
          style={{
@@ -125,11 +129,11 @@ const MapVisual = ({ title1, title2, features1, features2 }) => {
         {/* Road layer - Centered Vertically */}
         <div className="absolute top-0 left-1/2 w-12 md:w-16 h-full bg-slate-400/50 border-x-2 border-slate-300/80 transform -translate-x-1/2"></div>
         
-        {/* Plotted Features */}
+        {/* Plotted Features with Absolute Alignment coordinates to resolve overlap bugs */}
         {features.map((f, i) => (
-          <div key={i} className={`absolute flex flex-col items-center justify-center p-1 sm:p-2 rounded-xl shadow-lg border-2 bg-white/90 backdrop-blur-md z-10 w-[64px] sm:w-[80px] md:w-[92px] ${f.pos}`}>
+          <div key={i} className={`absolute flex flex-col items-center justify-center p-1 sm:p-2 rounded-xl shadow-lg border-2 bg-white/95 backdrop-blur-md z-10 w-[72px] sm:w-[84px] md:w-[98px] ${f.pos}`}>
             <span className="text-xl sm:text-2xl md:text-3xl mb-0.5 drop-shadow-md">{f.icon}</span>
-            <span className="text-[8px] sm:text-[10px] md:text-xs font-bold mt-0.5 text-slate-800 text-center leading-tight break-words">{f.label}</span>
+            <span className="text-[8px] sm:text-[10px] md:text-xs font-black mt-0.5 text-slate-800 text-center leading-tight break-words">{f.label}</span>
           </div>
         ))}
       </div>
@@ -222,7 +226,7 @@ const dataHub = {
     { word: 'Rocket', type: 'Upward', def: 'To rise extremely quickly or make rapid progress.', example: 'Inflation rocketed in the last quarter.', cols: 'Prices, Demand', icon: ' 🚀 ' },
     { word: 'Jump', type: 'Upward', def: 'To increase suddenly and by a large amount.', example: 'Sales jumped by 20% last month.', cols: 'Suddenly, Significantly', icon: ' 🦘 ' },
     { word: 'Surge', type: 'Upward', def: 'A sudden and great increase.', example: 'There was a sudden surge in online shopping.', cols: 'Interest, Demand, Prices', icon: ' 🌊 ' },
-    { word: 'Leap', type: 'Upward', def: 'To make a large and sudden increase.', example: 'Profits leaped to a record high.', cols: 'Profits, Numbers', icon: ' 🏃 ‍ ♂️ ' },
+    { word: 'Leap', type: 'Upward', def: 'To make a large and sudden increase.', example: 'Profits leaped to a record high.', cols: 'Profits, Numbers', icon: ' 🏃‍♂️ ' },
     // Downward Trends
     { word: 'Fall', type: 'Downward', def: 'To go down to a lower level or amount.', example: 'The number of accidents fell sharply.', cols: 'Sharply, Steadily', icon: ' 📉 ' },
     { word: 'Decrease', type: 'Downward', def: 'To become less, or to make something become less.', example: 'The unemployment rate decreased.', cols: 'Significantly, Slowly', icon: ' ➖ ' },
@@ -295,21 +299,21 @@ const dataHub = {
     { text: "Patience dipped slightly on Tuesday before recovering.", data: [50, 30, 45, 60] }
   ],
   prepositions: [
-    { text: "Patience decreased _ 100% _ Monday _ Friday.", answers: ["by", "from", "to"] },
-    { text: "Procrastination peaked _ 11 PM.", answers: ["at"] },
-    { text: "The amount of pointless meetings stood _ 5 per day.", answers: ["at"] },
-    { text: "Motivation fell _ a high _ 90 _ a low _ zero.", answers: ["from", "of", "to", "of"] },
-    { text: "My anxiety fluctuated _ panic _ extreme panic.", answers: ["between", "and"] },
-    { text: "Unread emails started _ 50 on Monday.", answers: ["at"] },
-    { text: "There was a dramatic increase _ the consumption of snacks.", answers: ["in"] },
-    { text: "Existential dread experienced a rise _ 40%.", answers: ["of"] },
-    { text: "Profits surged _ $1M _ $5M.", answers: ["from", "to"] },
-    { text: "There was a drop _ demand _ the new product.", answers: ["in", "for"] },
-    { text: "The population levelled off _ 2 million.", answers: ["at"] },
-    { text: "Prices dropped _ 15% during the sale.", answers: ["by"] },
-    { text: "Sales bottomed out _ just 5 units.", answers: ["at"] },
-    { text: "There was a peak _ 500 visitors _ Sunday.", answers: ["of", "on"] },
-    { text: "The figures oscillated _ 10% _ 20%.", answers: ["between", "and"] }
+    { text: "Patience decreased _ 100% _ Monday _ Friday.", answers: ["by", "from", "to"], explanation: "We use 'by' to express the size of the change or difference (decreased by 100%). We use 'from... to' to denote starting and ending points." },
+    { text: "Procrastination peaked _ 11 PM.", answers: ["at"], explanation: "We use 'at' for precise values, times, levels, or points on a scale (peaked at 11 PM)." },
+    { text: "The amount of pointless meetings stood _ 5 per day.", answers: ["at"], explanation: "We use 'at' with starting points or static figure descriptors (stood at 5 per day)." },
+    { text: "Motivation fell _ a high _ 90 _ a low _ zero.", answers: ["from", "of", "to", "of"], explanation: "We fall 'from' a point 'to' another, and connect categorical benchmarks with 'of' (a high of 90, a low of zero)." },
+    { text: "My anxiety fluctuated _ panic _ extreme panic.", answers: ["between", "and"], explanation: "The verb 'fluctuate' typically shifts dynamically 'between' two distinct benchmarks linked by 'and'." },
+    { text: "Unread emails started _ 50 on Monday.", answers: ["at"], explanation: "Initial numerical values use the preposition 'at' (started at 50) and days of the week use 'on'." },
+    { text: "There was a dramatic increase _ the consumption of snacks.", answers: ["in"], explanation: "The noun phrases 'increase in' or 'decrease in' specify the domain or category that undergoes the transformation." },
+    { text: "Existential dread experienced a rise _ 40%.", answers: ["of"], explanation: "A 'rise of 40%' introduces the margin of variation when using 'rise' as a noun." },
+    { text: "Profits surged _ $1M _ $5M.", answers: ["from", "to"], explanation: "Dynamic upward motion routes 'from' the original baseline 'to' the final destination figure." },
+    { text: "There was a drop _ demand _ the new product.", answers: ["in", "for"], explanation: "We express a 'drop in' a metric, while establishing 'demand for' a specific item." },
+    { text: "The population levelled off _ 2 million.", answers: ["at"], explanation: "The phrasal verb 'level off' relies on 'at' to specify the numerical plateau reached." },
+    { text: "Prices dropped _ 15% during the sale.", answers: ["by"], explanation: "We use 'by' to outline the difference or margin between the start and finish states (dropped by 15%)." },
+    { text: "Sales bottomed out _ just 5 units.", answers: ["at"], explanation: "The extreme threshold 'bottomed out' is grammatically pinned to its absolute floor with 'at'." },
+    { text: "There was a peak _ 500 visitors _ Sunday.", answers: ["of", "on"], explanation: "We hit a 'peak of [value]' to denote the amount, and use 'on' for specific calendar days." },
+    { text: "The figures oscillated _ 10% _ 20%.", answers: ["between", "and"], explanation: "The dynamic shifting verb 'oscillate' connects its boundaries using 'between... and'." }
   ],
   errors: [
     { sentence: "The number of useless meetings have increased.", errorWord: "have", correction: "has", context: "Subject-Verb Agreement" },
@@ -336,12 +340,33 @@ const dataHub = {
     { context: "Coffee Consumption (2022)", original: "The bar chart compares the tons of overpriced artisanal coffee consumed in London, Paris, and Rome in 2022.", synonyms: ["The bar chart exposes the alarming intake of expensive caffeine across three major European capitals during 2022.", "The diagram illustrates the volume of premium coffee purchased by residents of London, Paris, and Rome in 2022."], chartType: 'bar', chartData: { labels: ['London','Paris', 'Rome'], datasets: [{ label: 'Tons', data: [500,450, 300], backgroundColor: ['#ef4444','#10b981', '#f59e0b'] }] } },
     { context: "Zoom Excuses (2021)", original: "The pie chart breaks down the primary reasons employees muted their microphones during Zoom calls in 2021.", synonyms: ["The chart categorizes the excuses remote workers used to avoid participating in virtual meetings throughout 2021.", "The pie chart delineates the main justifications for microphone muting in corporate video conferences in 2021."], chartType: 'doughnut', chartData: { labels: ['Eating','Yelling at kids','Watching TV', 'Actually working'], datasets: [{ data: [40, 30, 25, 5], backgroundColor: ['#f59e0b', '#f43f5e', '#8b5cf6', '#10b981'] }] } },
   ],
+  // Bad Paraphrasing Analysis (Enhanced with original context and comparison critiques)
   badParaphrases: [
-    { bad: "The graph shows the numbers of people who bought electric cars.", reason: "Grammar & Vocab Error: 'Numbers' should be singular ('the number of people'). Also, copying the word 'shows' directly from the prompt is lazy and limits your lexical resource score." },
-    { bad: "The pie chart displays the percent of men who enjoy cooking.", reason: "Vocabulary Error: You cannot use 'percent' on its own like this. It must be 'percentage' or 'proportion'. 'Percent' is only used after a number (e.g., 20 percent)." },
-    { bad: "It is clearly seen from the graph provided that the amount of cars increased.", reason: "Fluff & Grammar: 'It is clearly seen from the graph provided that' is memorised filler fluff that examiners hate. 'Amount' is used for uncountable nouns; for cars, it MUST be 'number'." },
-    { bad: "The table explains how much populations changed in 2020.", reason: "Semantic Error: A table doesn't 'explain' anything (it illustrates or details). Furthermore, 'how much populations changed' is horribly phrased; use 'demographic changes' or 'population shifts'." },
-    { bad: "The map illustrates the building of a new supermarket and cutting down trees.", reason: "Task Achievement Warning: This describes specific details, not an overview. A paraphrase/overview for a map should summarise the *whole* transformation (e.g., 'The maps illustrate the commercial redevelopment of a rural village')." }
+    { 
+      original: "The line graph outlines the number of individuals purchasing electric vehicles globally between 2015 and 2025.",
+      bad: "The graph shows the numbers of people who bought electric cars.", 
+      reason: "Comparison Critique: The original prompt asks you to paraphrase a formal, precise title ('number of individuals purchasing electric vehicles'). By writing 'the numbers of people', you made a basic grammatical error ('numbers' must be singular 'the number'). Furthermore, copying 'shows' directly from the prompt and oversimplifying 'electric vehicles' to 'electric cars' limits your lexical resource score." 
+    },
+    { 
+      original: "The pie chart details the proportion of male respondents who reported cooking as their primary hobby in 2022.",
+      bad: "The pie chart displays the percent of men who enjoy cooking.", 
+      reason: "Comparison Critique: The original prompt specifies 'proportion of male respondents'. Your paraphrase attempts to simplify this to 'the percent of men'. Grammatically, 'percent' cannot be used as a noun on its own like this (it must be 'percentage' or 'proportion'). You can only use 'percent' after a specific number (e.g., 40 percent). Also, 'enjoy cooking' is too informal for 'reported cooking as their primary hobby'." 
+    },
+    { 
+      original: "The bar chart compares the total number of registered passenger vehicles in three European cities over a five-year period.",
+      bad: "It is clearly seen from the graph provided that the amount of cars increased.", 
+      reason: "Comparison Critique: The original topic focuses on countable nouns ('registered passenger vehicles'). You used 'amount of cars'. 'Amount' is reserved strictly for uncountable nouns; for vehicles, you MUST use 'number of cars'. Additionally, 'It is clearly seen from the graph provided that' is memorized introductory filler fluff that examiners penalize. Get straight to the analysis!" 
+    },
+    { 
+      original: "The table presents demographic shifts and population growth percentages across six metropolitan areas in the year 2020.",
+      bad: "The table explains how much populations changed in 2020.", 
+      reason: "Comparison Critique: The original prompt describes academic 'demographic shifts and population growth percentages'. Writing 'how much populations changed' is extremely colloquial and lacks academic register. Additionally, a table doesn't 'explain' (which implies giving reasons for a phenomenon); it 'presents', 'illustrates', or 'details' data points." 
+    },
+    { 
+      original: "The two maps show the layout of a woodland park in 2010 and its subsequent commercial development in 2020.",
+      bad: "The map illustrates the building of a new supermarket and cutting down trees.", 
+      reason: "Comparison Critique: The original prompt describes a high-level geographical transformation ('layout of a woodland park... and subsequent commercial development'). By writing 'building of a new supermarket and cutting down trees', you are writing detailed body paragraph descriptions, not a high-level overview. A proper introduction or overview must summarize the whole transformation (e.g., 'the conversion of a recreational park into a commercial zone')." 
+    }
   ],
   paraphraseQuiz: [
     {
@@ -361,12 +386,23 @@ const dataHub = {
       ]
     }
   ],
+  // Expanded to exactly 15 highly realistic academic IELTS Writing Task 1 prompts
   paraphrasePractice: [
     { id: 1, text: "The graph below shows the proportion of the population aged 65 and over between 1940 and 2040 in three different countries: Japan, Sweden and the USA." },
     { id: 2, text: "The maps below show the centre of a small town called Islip as it is now, and plans for its development in the year 2025." },
     { id: 3, text: "The diagram below shows the recycling process of aluminium cans in a UK facility." },
     { id: 4, text: "The chart below shows the total number of minutes (in billions) of telephone calls in the UK, divided into three categories (local, national/international, and mobile), from 1995 to 2002." },
-    { id: 5, text: "The table below gives information on consumer spending on three different items (food, clothing, and leisure) in five different European countries in 2002." }
+    { id: 5, text: "The table below gives information on consumer spending on three different items (food, clothing, and leisure) in five different European countries in 2002." },
+    { id: 6, text: "The charts below show the average percentage of energy consumed by household appliances in Australia in 2005 and 2015." },
+    { id: 7, text: "The bar chart illustrates the percentage of high school graduates who went on to attend university in four different countries from 1990 to 2010." },
+    { id: 8, text: "The table below compares the daily consumption of water per capita in litres across ten international cities in the year 2018." },
+    { id: 9, text: "The flow chart outlines the steps involved in the collection, sorting, and processing of recycled plastic containers for industrial reuse." },
+    { id: 10, text: "The maps below show the layout of an international airport terminal as it appeared in 2012 and the structural extensions made by 2022." },
+    { id: 11, text: "The line graph details the annual change in the prices of three basic foodstuffs (wheat, sugar, and beef) globally over a thirty-year period starting from 1990." },
+    { id: 12, text: "The pie charts compare the employment distribution across agriculture, manufacturing, and service industries in South Korea in 1980 and 2020." },
+    { id: 13, text: "The diagram illustrates how geothermal energy is extracted from the earth and converted into electricity at a power station." },
+    { id: 14, text: "The table below gives information about the preferred modes of transport for commuters in five major Canadian cities in the year 2016." },
+    { id: 15, text: "The maps illustrate the changes that took place in the coastal village of Ryemouth between 1995 and 2025." }
   ],
   deepDiveTopics: [
     { 
@@ -397,28 +433,29 @@ const dataHub = {
       id: 'process', title: 'Decoding Processes', subtitle: 'Step-by-step without losing your mind.', 
       content: 'A process diagram requires sequence and passivity. You MUST use the passive voice (e.g., "The clay is heated", not "They heat the clay"). Group the steps logically into two paragraphs (e.g., Preparation vs Manufacturing). Use rich linking words: Initially, subsequently, following this, culminating in.', 
       guidingQuestion: "Look at the brick manufacturing process above. Write one complex sentence using the passive voice that connects the 'Drying Oven' stage to the 'Kiln' stage.",
-      visual: { type: 'process', data: { title: 'Brick Production', steps: [{ label: 'Drying Oven (48h)', icon: ' ♨️ ' }, { label: 'Kiln (1300°C)', icon: ' 🔥 ' }, { label: 'Cooling Chamber', icon: ' ❄️ ' }, { label: 'Packaging', icon: ' 📦 ' }] } } 
+      visual: { type: 'process', data: { title: 'Brick Production', steps: [{ label: 'Drying Oven (48h)', icon: '♨️' }, { label: 'Kiln (1300°C)', icon: '🔥' }, { label: 'Cooling Chamber', icon: '❄️' }, { label: 'Packaging', icon: '📦' }] } } 
     },
     { 
       id: 'map', title: 'Mapping the Changes', subtitle: 'North, South, Demolished, Constructed.', 
       content: 'Maps are all about prepositions of place and vocabulary of change. Never just list what is there. Focus on what was *demolished*, *constructed*, *replaced*, or *expanded*. Use compass directions (to the north of, south-west of) or relative positioning (adjacent to, opposite).', 
       guidingQuestion: "Compare the two complex maps above. Describe the redevelopment of the 'Forest' and 'Old Farm' areas using appropriate verbs of transformation and prepositions of place.",
+      // Center position bug completely resolved here by matching proper icon and coordinates
       visual: { type: 'map', data: { 
         title1: 'Town 1990', 
         features1: [
-          { label: 'Forest', icon: ' 🌲 ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }, 
-          { label: 'Old Farm', icon: ' 🐄 ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-400' }, 
-          { label: 'Post Office', icon: ' ✉️ ', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-slate-400' },
-          { label: 'Wooden Bridge', icon: ' 🌉 ', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-amber-800' },
-          { label: 'Dirt Road', icon: ' 🛤️ ', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-amber-700' }
+          { label: 'Forest', icon: '🌲', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-emerald-400' }, 
+          { label: 'Old Farm', icon: '🐄', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-amber-400' }, 
+          { label: 'Post Office', icon: '✉️', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-slate-400' },
+          { label: 'Wooden Bridge', icon: '🌉', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-amber-800' },
+          { label: 'Dirt Road', icon: '🛤️', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-amber-700' }
         ], 
         title2: 'Town 2024', 
         features2: [
-          { label: 'University', icon: ' 🎓 ', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-500' }, 
-          { label: 'Luxury Apts', icon: ' 🏢 ', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, 
-          { label: 'Shopping Mall', icon: ' 🏬 ', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-indigo-400' },
-          { label: 'Concrete Bridge', icon: ' 🌉 ', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-slate-500' },
-          { label: 'Dual Carriageway', icon: ' 🛣️ ', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-slate-800' }
+          { label: 'University', icon: '🎓', pos: 'top-2 right-2 sm:top-4 sm:right-4 border-indigo-500' }, 
+          { label: 'Luxury Apts', icon: '🏢', pos: 'bottom-2 left-2 sm:bottom-4 sm:left-4 border-rose-400' }, 
+          { label: 'Shopping Mall', icon: '🏬', pos: 'top-2 left-2 sm:top-4 sm:left-4 border-indigo-400' },
+          { label: 'Concrete Bridge', icon: '🌉', pos: 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-slate-500' },
+          { label: 'Dual Carriageway', icon: '🛣️', pos: 'bottom-2 right-2 sm:bottom-4 sm:right-4 border-slate-800' }
         ] 
       } } 
     },
@@ -649,8 +686,32 @@ export default function App() {
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-lora font-bold text-white tracking-tight mb-3">IELTS Writing Task 1 Masterclass</h1>
         <p className="text-lg md:text-xl font-medium text-slate-100 max-w-2xl mx-auto italic mb-6">Because a picture is worth 150 words (and your sanity).</p>
         
-        <div className="max-w-3xl mx-auto bg-slate-800/60 p-6 rounded-2xl border border-slate-600 backdrop-blur-sm shadow-xl text-slate-200 leading-relaxed text-sm md:text-base font-medium">
-          Welcome to the only platform on the internet dedicated to teaching you how to stare at a profoundly meaningless chart of 1994 cheese consumption and successfully hallucinate 150 highly academic words about it. Our AI examiner is here to brutally judge your grammar, mock your repetitive vocabulary, and ultimately transform you from a confused robot listing numbers into a sophisticated data analyst. Grab a coffee, suppress your existential dread, and let's conquer this test.
+        {/* Sarcastic Disclaimer Styled with Early macOS Liquid Glass accents */}
+        <div className="max-w-4xl mx-auto rounded-[2.5rem] p-8 md:p-10 mb-8 border border-white/80 shadow-2xl relative overflow-hidden"
+             style={{
+               background: 'linear-gradient(135deg, rgba(240, 248, 255, 0.85) 0%, rgba(200, 225, 255, 0.7) 50%, rgba(160, 215, 255, 0.9) 100%)',
+               boxShadow: '0 20px 45px rgba(0, 80, 200, 0.15), inset 0 4px 12px rgba(255,255,255,0.95), inset 0 -6px 12px rgba(40,140,255,0.4)',
+               backdropFilter: 'blur(16px)'
+             }}>
+          {/* Top Glossy reflection highlight */}
+          <div className="absolute top-0 left-[2.5%] w-[95%] h-[40%] pointer-events-none rounded-b-[150px]"
+               style={{
+                 background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.05) 100%)'
+               }}></div>
+          
+          <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+            <div className="p-4 bg-indigo-600/90 rounded-3xl text-white shadow-lg border border-indigo-400 shrink-0 transform -rotate-3">
+              <Zap className="w-10 h-10 text-amber-300 drop-shadow-sm" fill="currentColor" />
+            </div>
+            <div className="text-left">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-600/90 text-white text-[10px] font-black uppercase rounded-full tracking-widest shadow-sm mb-3 border border-indigo-400">
+                ⚠️ OFFICIAL ACADEMIC PLATFORM DISCLAIMER
+              </div>
+              <p className="text-slate-800 text-[15px] md:text-lg leading-relaxed font-semibold">
+                Welcome to the only platform on the internet dedicated to teaching you how to stare at a <span className="text-indigo-800 font-extrabold underline decoration-indigo-400">profoundly meaningless chart</span> of 1994 cheese consumption and successfully <span className="text-pink-700 font-extrabold">hallucinate 150 highly academic words</span> about it. Our AI examiner is here to <span className="text-rose-700 font-extrabold">brutally judge</span> your grammar, mock your repetitive vocabulary, and ultimately transform you from a confused robot listing numbers into a sophisticated data analyst. Grab a coffee, suppress your existential dread, and let's conquer this test!
+              </p>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -738,7 +799,7 @@ export default function App() {
               </section>
             )}
 
-            {/* TAB 1: STRUCTURE */}
+            {/* TAB 1: STRUCTURE - Fixed top bar alignment issue visually */}
             {activeTab === 'structure' && (
               <section className="space-y-10 animate-fade-in">
                 <div>
@@ -754,9 +815,9 @@ export default function App() {
                 </LiquidCard>
                 
                 <div className="grid md:grid-cols-3 gap-6">
-                  <LiquidCard className="pt-8">
-                    <div className="absolute top-0 left-0 w-full h-3 bg-indigo-500 z-20"></div>
-                    <h3 className="font-bold text-indigo-900 text-xl mb-3 flex items-center drop-shadow-sm">
+                  {/* Clean structure cards using destructured parameters to avoid leak issues */}
+                  <LiquidCard topBarColor="bg-indigo-500" className="pt-12">
+                    <h3 className="font-bold text-indigo-900 text-xl mb-3 flex items-center drop-shadow-sm mt-2">
                       <span className="bg-indigo-100/80 border border-indigo-200 text-indigo-800 w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm shadow-sm">1</span> 
                       Introduction
                     </h3>
@@ -766,10 +827,9 @@ export default function App() {
                     </div>
                   </LiquidCard>
                   
-                  <LiquidCard className="pt-8 relative transform md:-translate-y-4">
-                    <div className="absolute top-0 left-0 w-full h-3 bg-emerald-500 z-20"></div>
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md z-30">Crucial</div>
-                    <h3 className="font-bold text-emerald-900 text-xl mb-3 flex items-center drop-shadow-sm">
+                  <LiquidCard topBarColor="bg-emerald-500" className="pt-12 relative transform md:-translate-y-4">
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider shadow-md z-30 border border-white/40">Crucial</div>
+                    <h3 className="font-bold text-emerald-900 text-xl mb-3 flex items-center drop-shadow-sm mt-2">
                       <span className="bg-emerald-100/80 border border-emerald-200 text-emerald-800 w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm shadow-sm">2</span> 
                       Overview
                     </h3>
@@ -779,9 +839,8 @@ export default function App() {
                     </div>
                   </LiquidCard>
                   
-                  <LiquidCard className="pt-8">
-                    <div className="absolute top-0 left-0 w-full h-3 bg-amber-500 z-20"></div>
-                    <h3 className="font-bold text-amber-900 text-xl mb-3 flex items-center drop-shadow-sm">
+                  <LiquidCard topBarColor="bg-amber-500" className="pt-12">
+                    <h3 className="font-bold text-amber-900 text-xl mb-3 flex items-center drop-shadow-sm mt-2">
                       <span className="bg-amber-100/80 border border-amber-200 text-amber-900 w-8 h-8 rounded-full flex items-center justify-center mr-2 text-sm shadow-sm">3</span> 
                       Details
                     </h3>
@@ -1054,29 +1113,47 @@ export default function App() {
                   ))}
                 </div>
                 
-                {/* Bad Paraphrasing Analysis */}
+                {/* Bad Paraphrasing Analysis - Enhanced with original context comparison */}
                 <LiquidCard className="mb-8 mt-12 border-rose-200/50" style={{ background: 'linear-gradient(180deg, rgba(255, 240, 245, 0.8) 0%, rgba(255, 230, 240, 0.6) 100%)' }}>
                     <h3 className="text-2xl font-bold text-rose-900 mb-4 flex items-center drop-shadow-sm">
                       <AlertCircle className="w-6 h-6 mr-2 text-rose-600" /> Terrible Paraphrasing Analysis
                     </h3>
-                    <p className="text-rose-900/80 mb-6 font-medium">Here are 5 examples of extremely poor paraphrasing. Click the "Why is this bad?" button to reveal the examiner's critique.</p>
+                    <p className="text-rose-900/80 mb-6 font-medium">Compare these 5 examples of extremely poor paraphrasing directly against their original academic prompts. Click "Why is this bad?" to reveal the detailed critique.</p>
                     
                     <div className="space-y-4 relative z-20">
                       {dataHub.badParaphrases.map((item, idx) => {
                         const isRevealed = revealedBadParaphrases[idx];
                         return (
-                          <div key={idx} className="bg-white/60 backdrop-blur-md p-5 rounded-2xl border border-white/70 shadow-sm flex flex-col gap-4">
-                            <div className="flex justify-between items-start md:items-center flex-col md:flex-row gap-4">
-                              <p className="font-lora text-lg font-bold text-slate-800 flex-grow drop-shadow-sm">"{item.bad}"</p>
+                          <div key={idx} className="bg-white/65 backdrop-blur-md p-5 rounded-2xl border border-white/70 shadow-sm flex flex-col gap-4">
+                            <div className="flex flex-col gap-2.5">
+                              {/* Original Academic Prompt */}
+                              <div className="text-[10px] font-black tracking-widest text-slate-500 uppercase bg-white/40 border border-white/40 rounded px-2.5 py-1 w-fit shadow-inner">
+                                Original Academic Prompt Context:
+                              </div>
+                              <p className="font-lora text-sm font-semibold text-slate-700 italic border-l-4 border-indigo-400 pl-3.5 mb-2">
+                                "{item.original}"
+                              </p>
+                              {/* Bad / Lazy Paraphrase */}
+                              <div className="text-[10px] font-black tracking-widest text-rose-500 uppercase">
+                                Student's Lazy / Bad Paraphrase:
+                              </div>
+                              <p className="font-lora text-lg font-black text-rose-800 leading-snug drop-shadow-sm">
+                                "{item.bad}"
+                              </p>
+                            </div>
+                            
+                            <div className="flex justify-between items-start md:items-center flex-col md:flex-row gap-4 border-t border-white/40 pt-4">
+                              <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">Status: Heavily Penalized by Examiner</span>
                               <button 
                                 onClick={() => toggleBadParaphrase(idx)}
-                                className={`px-4 py-2 rounded-xl font-bold border transition-colors shadow-sm whitespace-nowrap ${isRevealed ? 'bg-rose-100 border-rose-300 text-rose-800' : 'bg-white/80 border-white/50 text-slate-700 hover:border-rose-400 hover:text-rose-700 hover:bg-white'}`}
+                                className={`px-4 py-2 rounded-xl font-bold border transition-colors shadow-sm text-sm whitespace-nowrap ${isRevealed ? 'bg-rose-100 border-rose-300 text-rose-800' : 'bg-white/80 border-white/50 text-slate-700 hover:border-rose-400 hover:text-rose-700 hover:bg-white'}`}
                               >
                                 {isRevealed ? 'Hide Critique' : 'Why is this bad?'}
                               </button>
                             </div>
+                            
                             {isRevealed && (
-                              <div className="bg-rose-100/70 backdrop-blur-sm p-4 rounded-xl border border-rose-200 text-rose-900 text-sm animate-fade-in shadow-inner">
+                              <div className="bg-rose-100/70 backdrop-blur-sm p-4 rounded-xl border border-rose-200 text-rose-900 text-sm animate-fade-in shadow-inner font-semibold leading-relaxed">
                                 <strong className="font-black uppercase tracking-wider text-rose-700 text-xs mr-2">Examiner Feedback:</strong>
                                 {item.reason}
                               </div>
@@ -1087,10 +1164,10 @@ export default function App() {
                     </div>
                 </LiquidCard>
 
-                {/* Full Paraphrase Practice Challenge */}
+                {/* Full Paraphrase Practice Challenge - Expanded to 15 Prompts */}
                 <LiquidCard className="mt-12">
                   <h3 className="text-2xl font-bold text-indigo-900 mb-4 flex items-center drop-shadow-sm">
-                    <Edit3 className="w-6 h-6 mr-2 text-indigo-600" /> Full Paraphrase Challenge
+                    <Edit3 className="w-6 h-6 mr-2 text-indigo-600" /> Full Paraphrase Challenge (15-Question Bank)
                   </h3>
                   <p className="text-slate-800 mb-6 font-medium">
                     Now it's your turn. Read the full prompt below and write a complete paraphrase. The AI examiner will strictly evaluate you on missing details (dates, categories, locations) and lexical resource.
@@ -1121,7 +1198,7 @@ export default function App() {
                     </p>
                   </div>
                   <textarea
-                    className="w-full p-6 rounded-2xl border border-white/80 focus:ring-2 focus:ring-indigo-500 outline-none mb-6 font-lora text-lg bg-white/70 backdrop-blur-md shadow-inner resize-none relative z-20 placeholder:text-slate-400 font-medium text-slate-800"
+                    className="w-full p-6 rounded-2xl border border-white/80 focus:ring-2 focus:ring-indigo-500 outline-none mb-6 font-lora text-lg bg-white/70 backdrop-blur-sm shadow-inner resize-none relative z-20 placeholder:text-slate-400 font-medium text-slate-800"
                     rows="3"
                     placeholder="Type your complete paraphrase here..."
                     value={practiceParaphraseInput}
@@ -1149,12 +1226,12 @@ export default function App() {
               </section>
             )}
 
-            {/* TAB 4: PREPOSITIONS */}
+            {/* TAB 4: PREPOSITIONS - Enhanced with numbered labels & rich interactive grammatical critiques */}
             {activeTab === 'prepositions' && (
               <section className="space-y-8 animate-fade-in">
                 <div>
                   <h2 className="text-3xl font-lora font-bold text-indigo-900 mb-4">The Preposition Minefield</h2>
-                  <p className="text-slate-700 text-lg leading-relaxed">
+                  <p className="text-slate-700 text-lg leading-relaxed font-medium">
                     Nothing exposes a weak grammar score faster than saying something "increased <i>to</i> 20%" when you meant "increased <i>by</i> 20%". Fill in the gaps correctly.
                   </p>
                 </div>
@@ -1164,25 +1241,48 @@ export default function App() {
                     <div className="grid lg:grid-cols-2 gap-x-12 gap-y-8">
                       {dataHub.prepositions.map((item, qIdx) => {
                         const parts = item.text.split('_');
+                        const isCorrect = item.answers.every((ans, aIdx) => 
+                          prepInputs[`${qIdx}-${aIdx}`]?.toLowerCase().trim() === ans
+                        );
                         return (
-                          <div key={qIdx} className="text-lg text-slate-800 font-medium leading-loose pb-4 border-b border-white/50 flex flex-wrap items-center">
-                            {parts.map((part, pIdx) => (
-                              <React.Fragment key={pIdx}>
-                                {part}
-                                {pIdx < parts.length - 1 && (
-                                  <input 
-                                    className={`border-b-2 mx-2 text-center font-bold text-slate-950 outline-none w-20 transition-all shadow-sm ${
-                                      prepChecked 
-                                      ? (prepInputs[`${qIdx}-${pIdx}`]?.toLowerCase().trim() === item.answers[pIdx] ? 'bg-emerald-100 border-emerald-500 text-emerald-800' : 'bg-rose-100 border-rose-500 text-rose-800') 
-                                      : 'bg-white/80 border-white focus:bg-white focus:border-indigo-500'
-                                    }`}
-                                    value={prepInputs[`${qIdx}-${pIdx}`] || ''}
-                                    onChange={(e) => handlePrepChange(qIdx, pIdx, e.target.value)}
-                                    placeholder="?"
-                                  />
-                                )}
-                              </React.Fragment>
-                            ))}
+                          <div key={qIdx} className="text-lg text-slate-800 font-medium leading-loose pb-6 border-b border-white/50 flex flex-col gap-2">
+                            <div className="flex flex-wrap items-center">
+                              {/* Integrated numbered labels */}
+                              <span className="font-extrabold text-indigo-700 mr-3 shrink-0">{qIdx + 1}.</span>
+                              {parts.map((part, pIdx) => (
+                                <React.Fragment key={pIdx}>
+                                  {part}
+                                  {pIdx < parts.length - 1 && (
+                                    <input 
+                                      className={`border-b-2 mx-2 text-center font-bold text-slate-950 outline-none w-20 transition-all shadow-sm ${
+                                        prepChecked 
+                                        ? (prepInputs[`${qIdx}-${pIdx}`]?.toLowerCase().trim() === item.answers[pIdx] ? 'bg-emerald-100 border-emerald-500 text-emerald-800' : 'bg-rose-100 border-rose-500 text-rose-800') 
+                                        : 'bg-white/80 border-white focus:bg-white focus:border-indigo-500'
+                                      }`}
+                                      value={prepInputs[`${qIdx}-${pIdx}`] || ''}
+                                      onChange={(e) => handlePrepChange(qIdx, pIdx, e.target.value)}
+                                      placeholder="?"
+                                    />
+                                  )}
+                                </React.Fragment>
+                              ))}
+                            </div>
+                            
+                            {/* Rich corrective explanations with answers */}
+                            {prepChecked && (
+                              <div className="mt-2 p-4 rounded-xl text-sm transition-all duration-300 animate-fade-in bg-white/60 border border-white/80 shadow-inner">
+                                <div className="font-semibold text-slate-800 flex items-center mb-1.5">
+                                  {isCorrect ? (
+                                    <span className="text-emerald-700 flex items-center gap-1.5"><CheckCircle className="w-4 h-4" /> Perfect!</span>
+                                  ) : (
+                                    <span className="text-rose-700 flex items-center gap-1.5"><AlertCircle className="w-4 h-4" /> Correct Answers: <span className="font-mono bg-white px-2 py-0.5 rounded border border-rose-200">{item.answers.join(', ')}</span></span>
+                                  )}
+                                </div>
+                                <p className="text-slate-700 leading-relaxed font-medium">
+                                  {item.explanation}
+                                </p>
+                              </div>
+                            )}
                           </div>
                         );
                       })}
@@ -1417,7 +1517,7 @@ export default function App() {
 
                         <div className="p-5 bg-white/60 border-t border-white/70 flex flex-col sm:flex-row justify-between items-center gap-4 mt-auto shadow-sm">
                           <div className="flex items-center space-x-4 w-full sm:w-auto">
-                            <div className={`flex items-center px-4 py-2.5 rounded-xl border-2 font-bold transition-colors shadow-sm ${wordCount < 150 ? 'bg-rose-100 text-rose-700 border-rose-300' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
+                            <div className={`flex items-center px-4 py-2.5 rounded-xl border-2 font-bold transition-colors shadow-sm ${wordCount < 150 ? 'bg-rose-100 text-rose-800 border-rose-300' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
                               Words: {wordCount}
                             </div>
                             <span className="text-sm font-bold text-indigo-700 transition-opacity drop-shadow-sm">{saveStatus}</span>
@@ -1463,7 +1563,7 @@ export default function App() {
 
           </div>
 
-          {/* Elegant Translucent Signature Footer */}
+          {/* Elegant Translucent Signature Footer with Single Correct Function Closing Layout */}
           <footer className="py-6 border-t border-slate-200/40 flex flex-col items-center justify-center relative overflow-hidden bg-white/20 backdrop-blur-sm rounded-b-2xl">
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 drop-shadow-sm">Crafted with ❤️ by</p>
             <span style={{ fontFamily: "'Brush Script MT', 'Lucida Handwriting', 'Pacifico', 'Apple Chancery', cursive" }} className="text-3xl italic tracking-widest text-indigo-700 drop-shadow-sm hover:text-indigo-500 transition-colors cursor-default select-none">
