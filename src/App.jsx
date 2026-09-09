@@ -520,12 +520,21 @@ const callEvaluatorAPI = async (type, payload) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ type, payload })
     });
-    if (!response.ok) throw new Error('API Request Failed');
-    const data = await response.json();
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(data.error || `AI feedback request failed (HTTP ${response.status}).`);
+    }
+
+    if (typeof data.result !== 'string' || !data.result.trim()) {
+      throw new Error('The AI examiner returned an empty response.');
+    }
+
     return data.result;
   } catch (error) {
     console.error("Backend connector error:", error);
-    return "System Error: The AI Examiner is currently offline. Please ensure your netlify.toml proxy redirects are active.";
+    return `System Error: ${error.message || 'The AI Examiner is currently unavailable.'}`;
   }
 };
 
@@ -1613,3 +1622,4 @@ export default function App() {
     </div>
   );
 }
+
