@@ -542,8 +542,107 @@ const callEvaluatorAPI = async (type, payload) => {
 // 4. MAIN REACT COMPONENT
 // ============================================================================
 
+const assessmentCriteria = [
+  {
+    title: 'Task Achievement', color: 'bg-indigo-500', question: 'Have I described the important information accurately?',
+    explanation: 'Select the main features, write a clear overview, make relevant comparisons and support your description with accurate details. For maps and processes, describe the main changes or stages.',
+    questions: [
+      'Can my reader understand what the visual shows from my introduction?',
+      'Does my overview explain the big picture rather than list individual details?',
+      'Have I selected the most important features and supported them with figures or relevant details?',
+      'Have I made useful comparisons where relevant, rather than described each item separately?',
+      'Are my figures, dates, units and descriptions correct?',
+      'Have I written at least 150 words without adding opinions or inventing reasons?'
+    ],
+    challenge: 'Three hospitals increased overall, one declined substantially and one changed very little. What belongs in the overview?',
+    answer: 'Summarise these broad patterns and any striking highest or lowest figures. Save the individual dates and numbers for the detail paragraphs. An overview gives your reader the big picture.'
+  },
+  {
+    title: 'Coherence and Cohesion', color: 'bg-emerald-500', question: 'Is my writing easy to follow?',
+    explanation: 'Coherence means organising information logically. Cohesion means connecting sentences and ideas clearly, using linking words and references such as “this figure” or “those at Adlin”.',
+    questions: [
+      'Does each paragraph have a clear purpose?',
+      'Have I grouped related or contrasting information together?',
+      'Do my ideas follow a logical order?',
+      'Do words such as “whereas”, “while” and “similarly” express the correct relationship?',
+      'Is it clear what expressions such as “this figure” refer to?'
+    ],
+    challenge: 'Would you describe five hospitals one by one, or group them according to their trends? Why?',
+    answer: 'Grouping hospitals with similar trends can make the report easier to follow and create useful comparisons. Use another paragraph for contrasting trends. Choose a grouping that suits the visual; there is no single compulsory arrangement.'
+  },
+  {
+    title: 'Lexical Resource', color: 'bg-amber-500', question: 'Is my vocabulary varied and precise?',
+    explanation: 'Use a suitable range of vocabulary accurately and naturally. Precision, spelling and correct word forms matter as much as variety. A long word is only helpful if it is the right word.',
+    questions: [
+      'Can I describe changes without repeating “went up” and “went down”?',
+      'Does each word match the data, for example “slightly” or “sharply”?',
+      'Am I using natural combinations, such as “a substantial decline”?',
+      'Have I checked spelling and word forms, such as “rise” and “rose”?',
+      'Am I choosing words I understand and can use accurately?'
+    ],
+    challenge: 'A line rises, falls, rises again and then falls slightly. Is “rose steadily” or “fluctuated” more accurate?',
+    answer: '“Fluctuated” captures the repeated rises and falls. “Rose steadily” suggests a consistent upward movement. Check the first and last values separately to describe the overall change.'
+  },
+  {
+    title: 'Grammatical Range and Accuracy', color: 'bg-rose-500', question: 'Are my sentences varied and correct?',
+    explanation: 'Use a variety of sentence structures with good control of grammar and punctuation. Combine information when it helps your reader, and keep each sentence clear.',
+    questions: [
+      'Have I used the right tense for the dates or stages shown?',
+      'Have I included both simple and complex sentences?',
+      'Can I combine two trends accurately using “while” or “whereas”?',
+      'Have I checked subject–verb agreement, articles and prepositions?',
+      'Are my sentences complete and correctly punctuated?'
+    ],
+    challenge: 'How could you combine these sentences? “Admissions at Adlin increased. Admissions at Oxley declined.”',
+    answer: '“While admissions at Adlin increased, those at Oxley declined.” This combines two contrasting trends, uses the past tense and avoids repeating “admissions”.'
+  }
+];
+
+const AssessmentGuide = ({ onContinue }) => (
+  <section className="space-y-8 animate-fade-in" aria-labelledby="assessment-title">
+    <div>
+      <h2 id="assessment-title" className="text-3xl font-lora font-bold text-indigo-900 mb-4">Understand the Four Assessment Criteria</h2>
+      <p className="text-slate-700 text-lg leading-relaxed">Before you write, find out what makes a strong IELTS Academic Task 1 report. Use these questions to plan your response and check your first draft.</p>
+      <p className="mt-3 text-slate-600">Start with the big picture. Then check organisation, vocabulary and grammar. Your report needs a clear message as well as accurate language.</p>
+    </div>
+    <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
+      {assessmentCriteria.map((criterion, index) => (
+        <LiquidCard key={criterion.title} topBarColor={criterion.color} className="pt-9">
+          <div className="flex items-start gap-3 mb-4">
+            <span className={`${criterion.color} text-white rounded-xl w-10 h-10 flex items-center justify-center font-bold shrink-0`} aria-hidden="true">{index + 1}</span>
+            <div>
+              <h3 className="text-xl font-extrabold text-slate-900">{criterion.title}</h3>
+              <p className="text-indigo-900 font-semibold mt-1">{criterion.question}</p>
+            </div>
+          </div>
+          <p className="text-slate-800 leading-relaxed mb-5">{criterion.explanation}</p>
+          <div className="bg-white/70 rounded-2xl p-4 md:p-5 border border-white/80">
+            <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2"><CheckCircle className="w-5 h-5 text-indigo-600" aria-hidden="true" />Ask yourself</h4>
+            <ul className="list-disc pl-5 space-y-3 text-slate-800 leading-relaxed">
+              {criterion.questions.map(question => <li key={question}>{question}</li>)}
+            </ul>
+          </div>
+          <div className="mt-5 bg-indigo-50/80 rounded-2xl p-4 border border-indigo-100">
+            <h4 className="font-bold text-indigo-900 mb-2 flex items-center gap-2"><Lightbulb className="w-5 h-5" aria-hidden="true" />Think before you reveal</h4>
+            <p className="text-slate-800 leading-relaxed">{criterion.challenge}</p>
+            <details className="mt-3">
+              <summary className="cursor-pointer font-bold text-indigo-700 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600">Reveal a possible answer</summary>
+              <p className="mt-3 text-slate-800 leading-relaxed">{criterion.answer}</p>
+            </details>
+          </div>
+        </LiquidCard>
+      ))}
+    </div>
+    <div className="rounded-2xl bg-indigo-50 border border-indigo-100 p-5 flex flex-col md:flex-row gap-5 md:items-center md:justify-between">
+      <p className="text-slate-700"><strong className="text-indigo-900">Ready to write?</strong> Return to these questions after your first draft and choose one improvement for each criterion.</p>
+      <button onClick={onContinue} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl flex items-center justify-center gap-2 shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Continue to Newcomer Guide <ArrowRight className="w-5 h-5" aria-hidden="true" /></button>
+    </div>
+    <p className="text-sm text-slate-600">Based on the official IELTS Academic Writing criteria. <a href="https://ielts.org/cdn/ielts-guides/ielts-writing-key-assessment-criteria.pdf" target="_blank" rel="noopener noreferrer" className="text-indigo-700 underline">Read the official assessment guide</a>. These guiding questions are for learning and self-checking.</p>
+  </section>
+);
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState('basics');
+  const [activeTab, setActiveTab] = useState('assessment');
 
   // --- Trends Vocabulary Matrix State ---
   const [vocabViewMode, setVocabViewMode] = useState('grid');
@@ -755,6 +854,7 @@ export default function App() {
           {/* Navigation Tabs */}
           <nav className="bg-white/60 border-b border-gray-200 flex overflow-x-auto no-scrollbar relative z-20">
             {[
+              { id: 'assessment', label: 'Assessment Criteria' },
               { id: 'basics', label: 'Newcomer Guide' },
               { id: 'structure', label: 'Structure' },
               { id: 'change', label: 'Trends' },
@@ -780,6 +880,9 @@ export default function App() {
 
           {/* Content Area */}
           <div className="p-6 md:p-10 relative z-10">
+            {activeTab === 'assessment' && (
+              <AssessmentGuide onContinue={() => { setActiveTab('basics'); setSelectedStudyType(null); }} />
+            )}
             
             {/* TAB 0: NEWCOMER GUIDE */}
             {activeTab === 'basics' && (
