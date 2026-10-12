@@ -544,7 +544,7 @@ const callEvaluatorAPI = async (type, payload) => {
 
 const assessmentCriteria = [
   {
-    title: 'Task Achievement', color: 'bg-indigo-500', question: 'Have I described the important information accurately?',
+    title: 'Task Achievement (25%)', color: 'bg-indigo-500', question: 'Have I described the important information accurately?',
     explanation: 'Select the main features, write a clear overview, make relevant comparisons and support your description with accurate details. For maps and processes, describe the main changes or stages.',
     questions: [
       'Can my reader understand what the visual shows from my introduction?',
@@ -558,7 +558,7 @@ const assessmentCriteria = [
     answer: 'Summarise these broad patterns and any striking highest or lowest figures. Save the individual dates and numbers for the detail paragraphs. An overview gives your reader the big picture.'
   },
   {
-    title: 'Coherence and Cohesion', color: 'bg-emerald-500', question: 'Is my writing easy to follow?',
+    title: 'Coherence and Cohesion (25%)', color: 'bg-emerald-500', question: 'Is my writing easy to follow?',
     explanation: 'Coherence means organising information logically. Cohesion means connecting sentences and ideas clearly, using linking words and references such as “this figure” or “those at Adlin”.',
     questions: [
       'Does each paragraph have a clear purpose?',
@@ -571,7 +571,7 @@ const assessmentCriteria = [
     answer: 'Grouping hospitals with similar trends can make the report easier to follow and create useful comparisons. Use another paragraph for contrasting trends. Choose a grouping that suits the visual; there is no single compulsory arrangement.'
   },
   {
-    title: 'Lexical Resource', color: 'bg-amber-500', question: 'Is my vocabulary varied and precise?',
+    title: 'Lexical Resource (25%)', color: 'bg-amber-500', question: 'Is my vocabulary varied and precise?',
     explanation: 'Use a suitable range of vocabulary accurately and naturally. Precision, spelling and correct word forms matter as much as variety. A long word is only helpful if it is the right word.',
     questions: [
       'Can I describe changes without repeating “went up” and “went down”?',
@@ -584,7 +584,7 @@ const assessmentCriteria = [
     answer: '“Fluctuated” captures the repeated rises and falls. “Rose steadily” suggests a consistent upward movement. Check the first and last values separately to describe the overall change.'
   },
   {
-    title: 'Grammatical Range and Accuracy', color: 'bg-rose-500', question: 'Are my sentences varied and correct?',
+    title: 'Grammatical Range and Accuracy (25%)', color: 'bg-rose-500', question: 'Are my sentences varied and correct?',
     explanation: 'Use a variety of sentence structures with good control of grammar and punctuation. Combine information when it helps your reader, and keep each sentence clear.',
     questions: [
       'Have I used the right tense for the dates or stages shown?',
